@@ -1,6 +1,6 @@
 # 🚀 교통대 충청톤 3팀 프로젝트
 
-> **충청지역 해커톤 2024 - 교통대학교 3팀**
+> ** 2025 SW 융합클러스터 2.0 세종 DX 해커톤 - 교통대학교 3팀**
 
 <!--[![GitHub issues](https://img.shields.io/github/issues/username/repo-name)](https://github.com/chaechae-04/chungcheongton-team3/issues)-->
 <!--[![GitHub forks](https://img.shields.io/github/forks/username/repo-name)](https://github.com/chaechae-04/chungcheongton-team3/network)-->
