@@ -21,14 +21,14 @@
 ### Team 3 - [팀명 미정]
 **교통대학교 충청톤 3팀**
 
-| 역할 | 이름 | GitHub | 전공 | 담당 업무 |
-|------|------|--------|------|-----------|
-| 팀장 | 이영수 | [@chaechae-04](https://github.com/chaechae-04) | 컴퓨터공학과 | PM, FE |
-| 팀원 | 김태연 | [@github-username](https://github.com/username) | 컴퓨터소프트웨어학과 | FE |
-| 팀원 | 정시연 | [@github-username](https://github.com/username) | [전공] | Design |
-| 팀원 | 심건보 | [@github-username](https://github.com/username) | 컴퓨터소프트웨어학과 | BE |
-| 팀원 | 김다빈 | [@github-username](https://github.com/username) | 컴퓨터공학과 | BE |
-| 팀원 | 정상원 | [@github-username](https://github.com/username) | [전공] | BE |
+| 역할 | 이름 | GitHub | 담당 업무 |
+|------|------|--------|-----------|
+| 팀장 | 이영수 | [@chaechae-04](https://github.com/chaechae-04) | PM, FE |
+| 팀원 | 김태연 | [@github-username](https://github.com/username) | FE |
+| 팀원 | 정시연 | [@github-username](https://github.com/username) | Design |
+| 팀원 | 심건보 | [@github-username](https://github.com/username) | BE |
+| 팀원 | 김다빈 | [@github-username](https://github.com/username) | BE |
+| 팀원 | 정상원 | [@github-username](https://github.com/username) | BE |
 
 ## 💡 프로젝트 개요
 
