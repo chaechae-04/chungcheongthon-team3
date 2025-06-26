@@ -26,7 +26,7 @@
 | 팀장 | 이영수 | [@chaechae-04](https://github.com/chaechae-04) | 컴퓨터공학과 | PM, FE |
 | 팀원 | 김태연 | [@github-username](https://github.com/username) | 컴퓨터소프트웨어학과 | FE |
 | 팀원 | 정시연 | [@github-username](https://github.com/username) | [전공] | Design |
-| 팀원 | 심건보 | [@github-username](https://github.com/username) | 컴퓨터소프트웨어학과 | TL, BE |
+| 팀원 | 심건보 | [@github-username](https://github.com/username) | 컴퓨터소프트웨어학과 | BE |
 | 팀원 | 김다빈 | [@github-username](https://github.com/username) | 컴퓨터공학과 | BE |
 | 팀원 | 정상원 | [@github-username](https://github.com/username) | [전공] | BE |
 
@@ -95,7 +95,7 @@
 
 ## 📅 해커톤 일정
 
-### 🗓 전체 일정 (7/8 - 8/2)
+### 🗓 전체 일정 (7/8 - 8/2) *확정X
 
 | 기간 | 활동 | 담당 | 상태 |
 |------|------|------|------|
