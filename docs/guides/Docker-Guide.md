@@ -558,6 +558,41 @@ echo 🛑 환경 중지: docker-compose down
 pause
 ```
 
+***
+
+> 원클릭 중지
+>
+> stop.bat
+
+```
+@echo off
+chcp 65001 >nul
+echo 🛑 해커톤 개발환경 중지하기
+echo ==========================
+
+REM Docker가 실행 중인지 확인
+docker info >nul 2>&1
+if errorlevel 1 (
+    echo ❌ Docker가 실행되지 않았습니다.
+    pause
+    exit /b 1
+)
+
+echo 📦 Docker 컨테이너 중지 중...
+
+REM 컨테이너 중지
+docker-compose down
+
+echo.
+echo ✅ 개발환경이 중지되었습니다!
+echo.
+echo 🔄 다시 시작하려면: start.bat 실행
+echo 🧹 완전 초기화하려면: clean.bat 실행
+pause
+```
+
+***
+
 # ⚡ 원클릭으로 개발환경 시작하기
 
 ## 🎯 목표: 클릭 한 번으로 전체 환경 실행
