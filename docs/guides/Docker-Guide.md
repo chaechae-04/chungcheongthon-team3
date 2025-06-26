@@ -4,8 +4,8 @@
 
 ### 🎯 [개요](#개요)
 - [목표](#목표)
-- [Docker 환경의 장점](#📋-docker-환경의-장점)
-- [프로젝트 구조](#🗂-프로젝트-구조)
+- [Docker 환경의 장점](#docker-환경의-장점)
+- [프로젝트 구조](#프로젝트-구조)
 
 ### ⚙️ [설정 파일](#📝-핵심-설정-파일들)
 - [docker-compose.yml (메인 설정)](#1-docker-composeyml-메인-설정)
@@ -27,24 +27,27 @@
 - [로그 확인 (logs.sh)](#scriptsunixlogssh)
 
 ### 🚀 [실행 가이드](#🚀-팀장이-할-일-환경-설정)
-- [팀장이 할 일 (환경 설정)](#🚀-팀장이-할-일-환경-설정)
-- [Windows 팀원용 가이드](#🖥-windows-사용자)
-- [Mac/Linux 팀원용 가이드](#🍎-maclinux-사용자)
+- [팀장이 할 일 (환경 설정)](#팀장이-할-일)
+- [Windows 팀원용 가이드](#windows-가이드)
+- [Mac/Linux 팀원용 가이드](#mac-가이드)
 
 ### 🛠 [개발 및 문제해결](#🛠-개발-워크플로우)
-- [개발 워크플로우](#🛠-개발-워크플로우)
-- [문제 해결 FAQ](#🚨-문제-해결-faq)
-- [팀장 체크리스트](#📋-팀장-체크리스트)
-  
-## 🎯 목표 {#목표}
+- [개발 워크플로우](#개발-워크플로우)
+- [문제 해결 FAQ](#문제-해결-FAQ)
+- [팀장 체크리스트](#팀장-체크리스트)
+
+<a id="목표"></a>
+## 🎯 목표
 팀장이 Docker로 개발환경을 미리 설정해두고, 팀원들은 명령어 한 줄로 전체 환경을 실행할 수 있게 하기
 
+<a id="docker-환경의-장점"></a>
 ## 📋 Docker 환경의 장점
 - ✅ **일관성**: 모든 팀원이 동일한 환경에서 개발
 - ✅ **간편성**: 복잡한 설치 과정 없이 명령어 한 줄로 실행
 - ✅ **격리**: 로컬 환경에 영향 없이 개발 가능
 - ✅ **공유**: 설정 파일만 공유하면 끝
 
+<a id="프로젝트-구조"></a>
 ## 🗂 프로젝트 구조
 ```
 hackathon-project/
@@ -741,6 +744,7 @@ case $choice in
 esac
 ```
 
+<a id="팀장이-할-일"></a>
 ## 🚀 팀장이 할 일 (환경 설정)
 
 ### 1단계: 프로젝트 구조 생성
@@ -790,18 +794,21 @@ scripts\windows\start.bat
 
 ## 👥 팀원용 실행 가이드
 
+<a id="windows-가이드"></a>
 ### 🖥 Windows 사용자
 1. **Docker Desktop 설치**: https://www.docker.com/products/docker-desktop
 2. **프로젝트 클론**: `git clone [리포지토리 URL]`
 3. **실행**: `scripts\windows\start.bat` 더블클릭
 4. **접속**: http://localhost:3000
 
+<a id="mac-가이드"></a>
 ### 🍎 Mac/Linux 사용자
 1. **Docker 설치**: https://docs.docker.com/get-docker/
 2. **프로젝트 클론**: `git clone [리포지토리 URL]`
 3. **실행**: `./scripts/unix/start.sh`
 4. **접속**: http://localhost:3000
 
+<a id="개발-워크플로우"></a>
 ## 🛠 개발 워크플로우
 
 ### 코드 수정 시
@@ -817,6 +824,7 @@ docker-compose exec frontend npm install [패키지명]
 docker-compose up --build backend
 ```
 
+<a id="문제-해결-FAQ"></a>
 ## 🚨 문제 해결 FAQ
 
 ### Q: 포트가 이미 사용 중이라고 나와요
@@ -843,6 +851,7 @@ docker-compose build --no-cache
 docker-compose up -d
 ```
 
+<a id="팀장-체크리스트"></a>
 ## 📋 팀장 체크리스트
 
 ### ✅ 환경 설정 완료
