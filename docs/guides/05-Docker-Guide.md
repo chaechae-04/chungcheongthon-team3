@@ -70,8 +70,9 @@ cd chungcheongton-team3
 ```
 
 #### 2단계: Docker 파일 확인
+
+> #### 필요한 파일들이 있는지 확인
 ```bash
-# 필요한 파일들이 있는지 확인
 ls -la docker-compose.yml
 ls -la start-dev.sh
 ls -la frontend/Dockerfile
@@ -91,37 +92,33 @@ chmod +x start-dev.sh
 ### 🪟 Windows 사용자 가이드
 
 #### Git Bash 사용 (권장)
+> #### 1. Git Bash 열기
+> #### 2. 프로젝트 폴더로 이동
+> #### 3. 실행
 ```bash
-# 1. Git Bash 열기
-# 2. 프로젝트 폴더로 이동
 cd /c/Users/[사용자명]/Desktop/chungcheongton-team3
-
-# 3. 실행
 ./start-dev.sh
 ```
 
 #### PowerShell/CMD 사용
+> #### 1. PowerShell 또는 CMD 열기
+> #### 2. 프로젝트 폴더로 이동
+> #### 3. 실행
 ```cmd
-# 1. PowerShell 또는 CMD 열기
-# 2. 프로젝트 폴더로 이동
 cd C:\Users\[사용자명]\Desktop\chungcheongton-team3
-
-# 3. 실행
 start-dev.bat
 ```
 
 ### 🍎 Mac/Linux 사용자 가이드
 
 #### Terminal 사용
+> #### 1. Terminal 열기
+> #### 2. 프로젝트 폴더로 이동
+> #### 3. 실행 권한 부여 (최초 1회만)
+> #### 4. 실행
 ```bash
-# 1. Terminal 열기
-# 2. 프로젝트 폴더로 이동
 cd ~/Desktop/chungcheongton-team3
-
-# 3. 실행 권한 부여 (최초 1회만)
 chmod +x start-dev.sh
-
-# 4. 실행
 ./start-dev.sh
 ```
 
@@ -138,14 +135,14 @@ chmod +x start-dev.sh
 ## 💻 개발 워크플로우
 
 ### 📅 매일 개발 시작할 때
+> #### 1. 최신 코드 받기
+> #### 2. Docker 환경 실행
+> #### 3. 브라우저에서 확인
 ```bash
-# 1. 최신 코드 받기
 git pull
 
-# 2. Docker 환경 실행
 ./start-dev.sh
 
-# 3. 브라우저에서 확인
 # Frontend: http://localhost:5173
 # Backend: http://localhost:8080
 ```
@@ -156,28 +153,32 @@ git pull
 - **로그 확인**: `docker compose logs -f`
 
 ### 🛑 개발 종료할 때
+> #### Docker 환경 종료
 ```bash
-# Docker 환경 종료
 docker compose down
 ```
 
 ### 📊 유용한 명령어들
+> #### 컨테이너 상태 확인
 ```bash
-# 컨테이너 상태 확인
 docker compose ps
-
-# 로그 실시간 확인
+```
+> #### 로그 실시간 확인
+```bash
 docker compose logs -f
-
-# 특정 서비스 로그만 확인
+```
+> #### 특정 서비스 로그만 확인
+```bash
 docker compose logs frontend
 docker compose logs backend
 docker compose logs database
-
-# 컨테이너 재시작
+```
+> #### 컨테이너 재시작
+```bash
 docker compose restart
-
-# 완전히 새로 빌드
+```
+> #### 완전히 새로 빌드
+```bash
 docker compose up -d --build
 ```
 
