@@ -281,33 +281,61 @@
 - **Day 21**: [진행 상황 업데이트] 
 -->
 
+<a id="설치-및-실행"></a>
 ## 🚀 설치 및 실행
-**[추가예정]**
-<!--
+
 ### 📋 사전 요구사항
+- **Git** (코드 클론용)
+- **Docker Desktop** (개발환경 실행용)
+
+### 🐳 Docker로 간편 실행 (권장)
+
+#### 모든 운영체제 공통
 ```bash
-Node.js >= 16.0.0
-npm >= 8.0.0
-Git
+# 1. 리포지토리 클론
+git clone https://github.com/chaechae-04/chungcheongton-team3.git
+cd chungcheongton-team3
+
+# 2. 개발환경 실행
+# Mac/Linux 또는 Windows Git Bash
+./start-dev.sh
+
+# Windows PowerShell/CMD
+start-dev.bat
 ```
 
-### 💻 로컬 개발 환경 설정
+#### 접속 주소
+- **Frontend**: http://localhost:5173
+- **Backend**: http://localhost:8080  
+- **Database**: localhost:3306
+
+#### 개발 명령어
 ```bash
-# 리포지토리 클론
-git clone https://github.com/username/repo-name.git
-cd repo-name
+# 로그 확인
+docker compose logs -f
 
-# 의존성 설치
+# 서비스 재시작
+docker compose restart
+
+# 개발환경 종료
+docker compose down
+```
+
+### 💻 로컬 개발 환경 설정 (선택사항)
+Docker 없이 개발하고 싶은 경우:
+
+#### Frontend
+```bash
+cd frontend
 npm install
-
-# 환경 변수 설정
-cp .env.example .env
-# .env 파일을 편집하여 필요한 환경 변수 설정
-
-# 개발 서버 실행
 npm run dev
 ```
--->
+
+#### Backend  
+```bash
+cd backend
+./gradlew bootRun
+```
 
 ### 🌐 배포된 버전
 **[추가예정]**
