@@ -13,6 +13,6 @@ public class TestController {
     
     @GetMapping("/api/test")
     public String test() {
-        return "Backend is working!";
+        return "api";
     }
 }
