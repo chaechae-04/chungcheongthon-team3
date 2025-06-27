@@ -291,16 +291,21 @@
 ### 🐳 Docker로 간편 실행 (권장)
 
 #### 모든 운영체제 공통
+
+> ### 1. 리포지토리 클론
 ```bash
-# 1. 리포지토리 클론
 git clone https://github.com/chaechae-04/chungcheongton-team3.git
 cd chungcheongton-team3
+```
 
-# 2. 개발환경 실행
-# Mac/Linux 또는 Windows Git Bash
+> ### 2. 개발환경 실행
+> #### Mac/Linux 또는 Windows Git Bash
+```bash
 ./start-dev.sh
+```
 
-# Windows PowerShell/CMD
+> #### Windows PowerShell/CMD
+```bash
 start-dev.bat
 ```
 
@@ -310,28 +315,30 @@ start-dev.bat
 - **Database**: localhost:3306
 
 #### 개발 명령어
+> #### 로그 확인
 ```bash
-# 로그 확인
 docker compose logs -f
-
-# 서비스 재시작
+```
+> #### 서비스 재시작
+```
 docker compose restart
-
-# 개발환경 종료
+```
+> #### 개발환경 종료
+```
 docker compose down
 ```
 
 ### 💻 로컬 개발 환경 설정 (선택사항)
 Docker 없이 개발하고 싶은 경우:
 
-#### Frontend
+> #### Frontend
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-#### Backend  
+> #### Backend  
 ```bash
 cd backend
 ./gradlew bootRun
