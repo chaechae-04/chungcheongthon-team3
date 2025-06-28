@@ -297,7 +297,7 @@
 
 > ### 1. 리포지토리 클론
 ```bash
-git clone https://github.com/chaechae-04/chungcheongton-team3.git
+git clone https://github.com/chaechae-04/chungcheongthon-team3.git
 cd chungcheongton-team3
 ```
 
