@@ -65,7 +65,7 @@
 
 #### 1단계: 프로젝트 클론
 ```bash
-git clone https://github.com/chaechae-04/chungcheongton-team3.git
+git clone https://github.com/chaechae-04/chungcheongthon-team3.git
 cd chungcheongton-team3
 ```
 
@@ -96,7 +96,7 @@ chmod +x start-dev.sh
 > #### 2. 프로젝트 폴더로 이동
 > #### 3. 실행
 ```bash
-cd /c/Users/[사용자명]/Desktop/chungcheongton-team3
+cd /c/Users/[사용자명]/Desktop/chungcheongthon-team3
 ./start-dev.sh
 ```
 
@@ -105,7 +105,7 @@ cd /c/Users/[사용자명]/Desktop/chungcheongton-team3
 > #### 2. 프로젝트 폴더로 이동
 > #### 3. 실행
 ```cmd
-cd C:\Users\[사용자명]\Desktop\chungcheongton-team3
+cd C:\Users\[사용자명]\Desktop\chungcheongthon-team3
 start-dev.bat
 ```
 
@@ -117,7 +117,7 @@ start-dev.bat
 > #### 3. 실행 권한 부여 (최초 1회만)
 > #### 4. 실행
 ```bash
-cd ~/Desktop/chungcheongton-team3
+cd ~/Desktop/chungcheongthon-team3
 chmod +x start-dev.sh
 ./start-dev.sh
 ```
