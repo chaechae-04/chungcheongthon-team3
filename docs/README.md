@@ -21,7 +21,6 @@
 ### Team 3 - [팀명 미정]
 **교통대학교 충청톤 3팀**
 
-<!--
 | 역할 | 이름 | GitHub | 담당 업무 |
 |------|------|--------|-----------|
 | 팀장 | 이영수 | [@chaechae-04](https://github.com/chaechae-04) | PM, FE |
@@ -30,18 +29,6 @@
 | 팀원 | 심건보 | [@RACENI](https://github.com/RACENI) | BE |
 | 팀원 | 김다빈 | [@i3inni](https://github.com/i3inni) | BE |
 | 팀원 | 정상원 | [@sangwon-jung-cell](https://github.com/sangwon-jung-cell) | BE |
--->
-
-| 역할 | 이름 | GitHub | 담당 업무 |
-|------|------|--------|-----------|
-| 팀장 | 이영수 | <a href="https://github.com/chaechae-04" target="_blank" rel="noopener noreferrer">@chaechae-04</a> | PM, FE |
-| 팀원 | 김태연 | <a href="https://github.com/gomdollgun" target="_blank" rel="noopener noreferrer">@gomdollgun</a> | FE |
-| 팀원 | 정시연 | <a href="https://github.com/username" target="_blank" rel="noopener noreferrer">@username</a> | Design |
-| 팀원 | 심건보 | <a href="https://github.com/RACENI" target="_blank" rel="noopener noreferrer">@RACENI</a> | BE |
-| 팀원 | 김다빈 | <a href="https://github.com/i3inni" target="_blank" rel="noopener noreferrer">@i3inni</a> | BE |
-| 팀원 | 정상원 | <a href="https://github.com/sangwon-jung-cell" target="_blank" rel="noopener noreferrer">@sangwon-jung-cell</a> | BE |
-
-<a href="https://github.com/chaechae-04" target="_blank" rel="noopener noreferrer">@chaechae-04</a>
 
 ## 💡 프로젝트 개요
 
