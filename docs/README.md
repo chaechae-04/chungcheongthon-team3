@@ -24,7 +24,7 @@
 | 역할 | 이름 | GitHub | 담당 업무 |
 |------|------|--------|-----------|
 | 팀장 | 이영수 | [@chaechae-04](https://github.com/chaechae-04) | PM, FE |
-| 팀원 | 김태연 | [@github-username](https://github.com/username) | FE |
+| 팀원 | 김태연 | [@gomdollgun](https://github.com/gomdollgun) | FE |
 | 팀원 | 정시연 | [@github-username](https://github.com/username) | Design |
 | 팀원 | 심건보 | [@RACENI](https://github.com/RACENI) | BE |
 | 팀원 | 김다빈 | [@i3inni](https://github.com/i3inni) | BE |
