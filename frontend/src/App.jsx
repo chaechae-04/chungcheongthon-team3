@@ -101,8 +101,15 @@ function About() {
               <span className="tech-tag">MySQL</span>
             </div>
             <div className="tech-category">
+              <h4>Design & Collaboration</h4>
+              <span className="tech-tag">Figma</span>
+              <span className="tech-tag">Kakao talk</span>
+              <span className="tech-tag">GitHub Projects</span>
+            </div>
+            <div className="tech-category">
               <h4>DevOps</h4>
               <span className="tech-tag">Docker</span>
+              <span className="tech-tag">Notion</span>
               <span className="tech-tag">GitHub</span>
             </div>
           </div>
