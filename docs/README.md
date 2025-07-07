@@ -41,6 +41,8 @@
 | 팀원 | 김다빈 | <a href="https://github.com/i3inni" target="_blank" rel="noopener noreferrer">@i3inni</a> | BE |
 | 팀원 | 정상원 | <a href="https://github.com/sangwon-jung-cell" target="_blank" rel="noopener noreferrer">@sangwon-jung-cell</a> | BE |
 
+<a href="https://github.com/chaechae-04" target="_blank" rel="noopener noreferrer">@chaechae-04</a>
+
 ## 💡 프로젝트 개요
 
 ### 🎯 주제
