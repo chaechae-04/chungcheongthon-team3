@@ -4,54 +4,84 @@
   align-items: center;
   gap: 20px;
   padding: 20px;
-  max-width: 500px;
+  max-width: 100vw;
   margin: 0 auto;
 }
 
 .api-response {
-  background-color: #f0f9ff;
-  border: 2px solid #0ea5e9;
+  background-color: var(--bg-response, #f0f9ff);
+  border: 2px solid var(--border-response, #0ea5e9);
   border-radius: 8px;
   padding: 16px;
   width: 100%;
   animation: fadeIn 0.3s ease-in;
+  color: var(--text-primary, #1f2937);
 }
 
 .api-response h3 {
   margin: 0 0 12px 0;
-  color: #0369a1;
+  color: var(--text-accent, #0369a1);
   font-size: 18px;
 }
 
 .response-content {
-  background-color: white;
+  background-color: var(--bg-content, white);
   padding: 12px;
   border-radius: 4px;
-  border-left: 4px solid #0ea5e9;
+  border-left: 4px solid var(--border-accent, #0ea5e9);
+  color: var(--text-primary, #1f2937);
 }
 
 .response-content p {
   margin: 8px 0;
   font-family: "Courier New", monospace;
   font-size: 14px;
+  color: var(--text-primary, #1f2937);
 }
 
 .response-content strong {
-  color: #1e40af;
+  color: var(--text-strong, #1e40af);
 }
 
 .error-message {
-  background-color: #fef2f2;
-  border: 2px solid #ef4444;
+  background-color: var(--bg-error, #fef2f2);
+  border: 2px solid var(--border-error, #ef4444);
   border-radius: 8px;
   padding: 12px;
   width: 100%;
+  color: var(--text-error, #dc2626);
 }
 
 .error-message p {
   margin: 0;
-  color: #dc2626;
+  color: var(--text-error, #dc2626);
   font-weight: 500;
+}
+
+.error-message details {
+  margin-top: 10px;
+  color: var(--text-error, #dc2626);
+}
+
+.error-message summary {
+  cursor: pointer;
+  color: var(--text-error, #dc2626);
+}
+
+.error-message ul {
+  color: var(--text-error, #dc2626);
+}
+
+.error-message code {
+  background-color: var(--bg-code, rgba(0, 0, 0, 0.1));
+  padding: 2px 4px;
+  border-radius: 3px;
+  color: var(--text-code, #dc2626);
+}
+
+.error-message a {
+  color: var(--text-link, #dc2626);
+  text-decoration: underline;
 }
 
 .test-button {
@@ -83,6 +113,25 @@
   transform: none;
 }
 
+.debug-info {
+  background-color: var(--bg-debug, #f0f0f0);
+  color: var(--text-debug, #374151);
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-size: 12px;
+  border: 1px solid var(--border-debug, #d1d5db);
+}
+
+.debug-info p {
+  margin: 5px 0;
+  color: var(--text-debug, #374151);
+}
+
+.debug-info strong {
+  color: var(--text-debug-strong, #1f2937);
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -92,4 +141,69 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* 라이트 모드 (기본) */
+:root {
+  --bg-response: #f0f9ff;
+  --border-response: #0ea5e9;
+  --text-primary: #1f2937;
+  --text-accent: #0369a1;
+  --bg-content: white;
+  --border-accent: #0ea5e9;
+  --text-strong: #1e40af;
+  --bg-error: #fef2f2;
+  --border-error: #ef4444;
+  --text-error: #dc2626;
+  --bg-code: rgba(0, 0, 0, 0.1);
+  --text-code: #dc2626;
+  --text-link: #dc2626;
+  --bg-debug: #f0f0f0;
+  --text-debug: #374151;
+  --border-debug: #d1d5db;
+  --text-debug-strong: #1f2937;
+}
+
+/* 다크 모드 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-response: #1e293b;
+    --border-response: #38bdf8;
+    --text-primary: #f1f5f9;
+    --text-accent: #38bdf8;
+    --bg-content: #334155;
+    --border-accent: #38bdf8;
+    --text-strong: #60a5fa;
+    --bg-error: #450a0a;
+    --border-error: #f87171;
+    --text-error: #fca5a5;
+    --bg-code: rgba(255, 255, 255, 0.1);
+    --text-code: #fca5a5;
+    --text-link: #fca5a5;
+    --bg-debug: #374151;
+    --text-debug: #d1d5db;
+    --border-debug: #6b7280;
+    --text-debug-strong: #f9fafb;
+  }
+}
+
+/* 강제 다크 모드 클래스 (선택사항) */
+.dark-mode {
+  --bg-response: #1e293b;
+  --border-response: #38bdf8;
+  --text-primary: #f1f5f9;
+  --text-accent: #38bdf8;
+  --bg-content: #334155;
+  --border-accent: #38bdf8;
+  --text-strong: #60a5fa;
+  --bg-error: #450a0a;
+  --border-error: #f87171;
+  --text-error: #fca5a5;
+  --bg-code: rgba(255, 255, 255, 0.1);
+  --text-code: #fca5a5;
+  --text-link: #fca5a5;
+  --bg-debug: #374151;
+  --text-debug: #d1d5db;
+  --border-debug: #6b7280;
+  --text-debug-strong: #f9fafb;
 }
