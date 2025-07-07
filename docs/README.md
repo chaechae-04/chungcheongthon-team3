@@ -86,8 +86,11 @@
 | **Git & GitHub** | ✅ 확정 | 버전 관리 및 협업 |
 | **Notion** | ✅ 확정 | 협업/문서화 도구 |
 | **배포 플랫폼** | 🔍 검토중 | Vercel, AWS, Heroku 등 |
+| **Docker** | ✅ 확정 | 컨테이너화 |
+<!-- 
 | **Docker** | 🔍 검토중 | 컨테이너화 (선택사항) |
-<!-- | **Docker** | ❓ 미정 | 컨테이너화 (선택사항) | -->
+| **Docker** | ❓ 미정 | 컨테이너화 (선택사항) | 
+-->
 
 ### Design & Collaboration
 | 기술 | 상태 | 설명 |
@@ -294,7 +297,7 @@
 
 > ### 1. 리포지토리 클론
 ```bash
-git clone https://github.com/chaechae-04/chungcheongton-team3.git
+git clone https://github.com/chaechae-04/chungcheongthon-team3.git
 cd chungcheongton-team3
 ```
 
