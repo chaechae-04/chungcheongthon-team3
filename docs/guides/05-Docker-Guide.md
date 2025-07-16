@@ -25,7 +25,7 @@
 - **이영수**: "제 컴퓨터에서는 안 돌아가요 ㅠㅠ"
 
 ### ✅ Docker로 개발할 때
-- **모든 팀원**: `./start-dev.sh` 실행 (PowerShell/CMD → `start-dev.bat`) → **동일한 환경에서 개발!** 🎉
+- **모든 팀원**: `./start-dev.sh` 실행 (PowerShell/CMD → `.\start-dev.bat`) → **동일한 환경에서 개발!** 🎉
 
 ### 🚀 Docker의 장점
 1. **환경 통일**: 모든 팀원이 똑같은 개발환경
@@ -106,7 +106,7 @@ cd /c/Users/[사용자명]/Desktop/chungcheongthon-team3
 > #### 3. 실행
 ```cmd
 cd C:\Users\[사용자명]\Desktop\chungcheongthon-team3
-start-dev.bat
+.\start-dev.bat
 ```
 
 ### 🍎 Mac/Linux 사용자 가이드
