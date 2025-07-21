@@ -12,7 +12,7 @@ echo 🔨 Docker 컨테이너 빌드 및 실행...
 docker compose up --build -d
 
 echo ⏳ 서비스 시작 대기 중...
-timeout /t 20 /nobreak >nul
+timeout /t 5 /nobreak >nul
 
 echo ✅ 개발환경 준비 완료!
 echo 📱 Frontend: http://localhost:5173
