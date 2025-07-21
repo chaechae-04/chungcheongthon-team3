@@ -3,6 +3,9 @@ package com.hackathon.knut.service;
 import com.hackathon.knut.dto.UserDto;
 import com.hackathon.knut.entity.User;
 import com.hackathon.knut.repository.UserRepository;
+
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,18 +24,26 @@ public class UserService {
         }
         User user = new User();
         user.setEmail(dto.getEmail());
-        user.setPassword(dto.getPassword());
-        user.setName(dto.getName());
+        user.setPw(dto.getPw());
+        user.setUsername(dto.getUsername());
         userRepository.save(user);
     }
 
     // 이메일 사용 가능 한지 확인하는 메소드
     public boolean isEmailAvailable(String email){
-        return !userRepository.existsByEmail(email);
+        return userRepository.existsByEmail(email);
     }
 
     // 사용자의 이메일을 가져오는 메소드
-    public User getUserByEmail(String email){
+    public Optional<User> getUserByEmail(String email){
         return userRepository.findByEmail(email);
+    }
+
+
+
+
+    // 임시
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
     }
 }

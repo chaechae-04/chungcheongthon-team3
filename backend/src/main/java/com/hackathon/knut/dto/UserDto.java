@@ -1,5 +1,7 @@
 package com.hackathon.knut.dto;
 
+import java.sql.Timestamp;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +10,8 @@ import lombok.Setter;
 public class UserDto {
 
     private String email;
-    private String password;
-    private String name;
+    private String username;
+    private Timestamp createdAt;
+    private String pw;
 
 }
