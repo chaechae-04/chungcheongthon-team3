@@ -10,9 +10,9 @@ function SignupPage() {
       <div className="wire-login-card">
         <h2 className="signup-title">회원가입</h2>
         <form className="wire-form">
-          <input type="text" placeholder="아이디" className="wire-input" />
-          <input type="password" placeholder="비밀번호" className="wire-input" />
-          <input type="password" placeholder="비밀번호 확인" className="wire-input" />
+          <input type="text" placeholder="Email" className="wire-input" />
+          <input type="password" placeholder="Password" className="wire-input" />
+          <input type="password" placeholder="Password Confirm" className="wire-input" />
           <button type="submit" className="wire-cta">회원가입</button>
         </form>
         <div className="login-link">
