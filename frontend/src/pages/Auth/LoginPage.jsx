@@ -1,23 +1,42 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import "./Auth.css"
+import "./LoginPage.css"
 
 function LoginPage() {
   return (
     <div className="main-wireframe auth-center-layout">
-      <div className="wire-logo">SmartCal</div>
+      
+      {/* 로그인 폼 카드 */}
       <div className="wire-login-card">
-        <h2 style={{marginBottom: 24, fontWeight: 700}}>로그인</h2>
+        <h2 className="login-title">로그인</h2>
         <form className="wire-form">
-          <input type="text" placeholder="아이디" className="wire-input" />
-          <input type="password" placeholder="비밀번호" className="wire-input" />
-          <button type="submit" className="wire-cta" style={{width: '100%', marginTop: 16}}>로그인</button>
+          <input type="email" placeholder="이메일을 입력하세요" className="wire-input" />
+          <input type="password" placeholder="비밀번호를 입력하세요" className="wire-input" />
+          <button type="submit" className="wire-cta">로그인</button>
         </form>
-        <div style={{marginTop: 18, textAlign: 'center'}}>
-          계정이 없으신가요? <Link to="/signup" style={{color: '#2563eb', fontWeight: 600}}>회원가입</Link>
+        
+        {/* 비밀번호 찾기 링크 */}
+        <div className="forgot-password-link">
+          <Link to="/forgot-password">비밀번호를 잊으셨나요?</Link>
+        </div>
+        
+        {/* 구분선 */}
+        <div className="divider"></div>
+        
+        {/* Google 로그인 버튼 */}
+        <button type="button" className="google-login-btn">
+          Google로 로그인
+        </button>
+        
+        {/* 회원가입 링크 */}
+        <div className="signup-link">
+          계정이 없으신가요? <Link to="/signup">회원가입</Link>
         </div>
       </div>
-      <Link to="/" style={{marginTop: 32, color: '#888', textDecoration: 'underline'}}>메인으로 돌아가기</Link>
+      
+      {/* 메인으로 돌아가기 */}
+      <Link to="/" className="back-to-main">메인으로 돌아가기</Link>
     </div>
   )
 }
