@@ -336,6 +336,7 @@
 }
 .badge.high {
   background: var(--high);
+  color: #222;
 }
 .badge.medium {
   background: var(--medium);
@@ -343,6 +344,7 @@
 }
 .badge.low {
   background: var(--low);
+  color: #222;
 }
 
 .ai-insight, .alarm-settings {
