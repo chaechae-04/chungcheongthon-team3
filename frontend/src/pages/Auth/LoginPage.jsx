@@ -16,18 +16,18 @@ function LoginPage() {
           <button type="submit" className="wire-cta">로그인</button>
         </form>
         
+        {/* Google 로그인 버튼 */}
+        <button type="button" className="google-login-btn">
+          Google 로그인
+        </button>
+
         {/* 비밀번호 찾기 링크 */}
         <div className="forgot-password-link">
           <Link to="/forgot-password">비밀번호를 잊으셨나요?</Link>
         </div>
-        
+
         {/* 구분선 */}
         <div className="divider"></div>
-        
-        {/* Google 로그인 버튼 */}
-        <button type="button" className="google-login-btn">
-          Google로 로그인
-        </button>
         
         {/* 회원가입 링크 */}
         <div className="signup-link">
