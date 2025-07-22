@@ -25,7 +25,7 @@
     --text-sub: #bfc6d1;
     --primary: #2563eb;
     --primary-dark: #1746a2;
-    --button-bg: #232a3a;
+    --button-bg: #2d3748;
     --button-text: #fff;
     --border: #232a3a;
     --shadow: 0 2px 12px rgba(0,0,0,0.32);
@@ -266,7 +266,8 @@
 .today-schedule {
   background: var(--bg-main);
   border-radius: 12px;
-  padding: 24px 20px 20px 20px;
+  padding: 20px;
+  padding-top: 0;
   box-shadow: 0 1px 4px rgba(37,99,235,0.04);
 }
 .today-schedule h4 {
@@ -276,7 +277,7 @@
 }
 .add-schedule {
   float: right;
-  margin-top: -32px;
+  margin-top: -28px;
   margin-bottom: 12px;
   background: var(--primary);
   color: var(--button-text);
@@ -350,7 +351,8 @@
 .ai-insight, .alarm-settings {
   background: var(--bg-main);
   border-radius: 12px;
-  padding: 24px 20px 20px 20px;
+  padding: 20px;
+  padding-top: 0;
   box-shadow: 0 1px 4px rgba(37,99,235,0.04);
 }
 .ai-insight h4, .alarm-settings h4 {
@@ -373,6 +375,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding-top: 0;
   margin-top: 10px;
 }
 .toggle-item {
