@@ -42,7 +42,18 @@
   }
 }
 
-.wire-header {
+.mainframe {
+  font-family: 'Pretendard', 'Noto Sans KR', Arial, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding-top: 56px;
+}
+
+.header {
   position: fixed;
   top: 0;
   left: 0;
@@ -56,7 +67,7 @@
   justify-content: center;
 }
 
-.wire-header-inner {
+.header-inner {
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
@@ -68,8 +79,8 @@
   box-sizing: border-box;
 }
 
-.wire-logo {
-  font-size: 1.1rem;
+.logo {
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--primary);
   display: flex;
@@ -77,10 +88,9 @@
   height: 56px;
   margin: 0;
   flex: none;
-  padding-top: 28px;
 }
 
-.wire-nav {
+.nav {
   display: flex;
   gap: 32px;
   align-items: center;
@@ -88,12 +98,7 @@
   flex: none;
 }
 
-.wire-auth {
-  display: flex;
-  align-items: center;
-  flex: none;
-}
-.wire-nav a {
+.nav a {
   position: relative;
   color: var(--text-main);
   text-decoration: none;
@@ -108,7 +113,7 @@
   align-items: center;
 }
 
-.wire-nav a::after {
+.nav a::after {
   content: "";
   display: block;
   position: absolute;
@@ -119,23 +124,27 @@
   transition: background 0.2s;
 }
 
-.wire-nav a.active {
+.nav a.active {
   color: var(--primary);
 }
-.wire-nav a.active::after {
+.nav a.active::after {
   background: var(--primary);
 }
 
-.wire-nav a:hover:not(.active) {
+.nav a:hover:not(.active) {
   color: rgba(37, 99, 235, 0.7);
 }
-.wire-nav a:hover:not(.active)::after {
+.nav a:hover:not(.active)::after {
   background: rgba(37, 99, 235, 0.3);
 }
-.wire-auth .wire-login,
-.wire-auth .wire-signup,
-.wire-auth button.wire-login,
-.wire-auth button.wire-signup {
+
+.auth {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.login, .signup, button.login, button.signup {
   margin-left: 12px;
   padding: 7px 18px;
   border-radius: 6px;
@@ -150,42 +159,34 @@
   display: inline-block;
   text-align: center;
 }
-.main-wireframe .wire-auth .wire-login,
-.main-wireframe .wire-auth button.wire-login {
-  background: var(--button-bg);
-  color: var(--primary);
+.login:hover, button.login:hover {
+  background: var(--border);
 }
-.main-wireframe .wire-auth .wire-signup,
-.main-wireframe .wire-auth button.wire-signup {
+.signup, button.signup {
   background: var(--primary);
   color: var(--button-text);
 }
-.wire-auth .wire-login:hover,
-.wire-auth button.wire-login:hover {
-  background: var(--border);
-}
-.wire-auth .wire-signup:hover,
-.wire-auth button.wire-signup:hover {
+.signup:hover, button.signup:hover {
   background: var(--primary-dark);
 }
 
-.wire-main-hero {
+.main-hero {
   text-align: center;
   margin: 48px 0 32px 0;
   padding: 56px 5vw 0 5vw;
 }
-.wire-main-hero h1 {
+.main-hero h1 {
   font-size: 2.2rem;
   font-weight: 800;
   margin-bottom: 12px;
   color: var(--text-main);
 }
-.wire-main-hero p {
+.main-hero p {
   color: var(--text-sub);
   font-size: 1.1rem;
   margin-bottom: 24px;
 }
-.wire-cta {
+.cta {
   background: var(--primary);
   color: var(--button-text);
   border: none;
@@ -197,11 +198,11 @@
   box-shadow: 0 2px 8px rgba(37,99,235,0.08);
   transition: background 0.2s;
 }
-.wire-cta:hover {
+.cta:hover {
   background: var(--primary-dark);
 }
 
-.wire-feature-cards {
+.feature-cards {
   display: flex;
   justify-content: center;
   gap: 32px;
@@ -209,7 +210,7 @@
   padding: 0 5vw;
   flex-wrap: wrap;
 }
-.wire-feature-card {
+.feature-card {
   background: var(--bg-card);
   border-radius: 16px;
   box-shadow: var(--shadow);
@@ -220,21 +221,21 @@
   max-width: 320px;
   margin-bottom: 16px;
 }
-.wire-feature-icon {
+.feature-icon {
   font-size: 2.2rem;
   margin-bottom: 12px;
 }
-.wire-feature-card h3 {
+.feature-card h3 {
   font-size: 1.15rem;
   font-weight: 700;
   margin-bottom: 8px;
 }
-.wire-feature-card p {
+.feature-card p {
   color: var(--text-sub);
   font-size: 1rem;
 }
 
-.wire-preview-section {
+.preview-section {
   margin: 0 auto 48px auto;
   width: 100%;
   max-width: 1200px;
@@ -244,36 +245,36 @@
   padding: 36px 3vw 32px 3vw;
   box-sizing: border-box;
 }
-.wire-preview-section h2 {
+.preview-section h2 {
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 28px;
   color: var(--text-main);
   text-align: center;
 }
-.wire-preview-grid {
+.preview-grid {
   display: flex;
   gap: 32px;
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.wire-today-schedule, .wire-ai-insight, .wire-alarm-settings {
+.today-schedule, .ai-insight, .alarm-settings {
   min-width: 220px;
   flex: 1 1 320px;
   margin-bottom: 24px;
 }
-.wire-today-schedule {
+.today-schedule {
   background: var(--bg-main);
   border-radius: 12px;
   padding: 24px 20px 20px 20px;
   box-shadow: 0 1px 4px rgba(37,99,235,0.04);
 }
-.wire-today-schedule h4 {
+.today-schedule h4 {
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 12px;
 }
-.wire-add-schedule {
+.add-schedule {
   float: right;
   margin-top: -32px;
   margin-bottom: 12px;
@@ -286,13 +287,13 @@
   font-weight: 500;
   cursor: pointer;
 }
-.wire-schedule-list {
+.schedule-list {
   margin-top: 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-.wire-schedule-item {
+.schedule-item {
   background: var(--bg-card);
   border-radius: 8px;
   padding: 14px 18px;
@@ -303,29 +304,29 @@
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   border-left: 6px solid var(--border);
 }
-.wire-schedule-item span {
+.schedule-item span {
   margin-left: 12px;
   font-size: 0.98rem;
   color: var(--text-sub);
 }
-.wire-schedule-item.high {
+.schedule-item.high {
   border-left: 6px solid var(--high);
   background: #fef2f2;
 }
-.wire-schedule-item.medium {
+.schedule-item.medium {
   border-left: 6px solid var(--medium);
   background: #fffbeb;
 }
-.wire-schedule-item.low {
+.schedule-item.low {
   border-left: 6px solid var(--low);
   background: #f0fdf4;
 }
 @media (prefers-color-scheme: dark) {
-  .wire-schedule-item.high { background: var(--high-bg-dark); }
-  .wire-schedule-item.medium { background: var(--medium-bg-dark); }
-  .wire-schedule-item.low { background: var(--low-bg-dark); }
+  .schedule-item.high { background: var(--high-bg-dark); }
+  .schedule-item.medium { background: var(--medium-bg-dark); }
+  .schedule-item.low { background: var(--low-bg-dark); }
 }
-.wire-badge {
+.badge {
   margin-left: 16px;
   padding: 2px 10px;
   border-radius: 8px;
@@ -333,29 +334,29 @@
   font-weight: 600;
   color: #fff;
 }
-.wire-badge.high {
+.badge.high {
   background: var(--high);
 }
-.wire-badge.medium {
+.badge.medium {
   background: var(--medium);
   color: #222;
 }
-.wire-badge.low {
+.badge.low {
   background: var(--low);
 }
 
-.wire-ai-insight, .wire-alarm-settings {
+.ai-insight, .alarm-settings {
   background: var(--bg-main);
   border-radius: 12px;
   padding: 24px 20px 20px 20px;
   box-shadow: 0 1px 4px rgba(37,99,235,0.04);
 }
-.wire-ai-insight h4, .wire-alarm-settings h4 {
+.ai-insight h4, .alarm-settings h4 {
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 12px;
 }
-.wire-insight-box {
+.insight-box {
   background: var(--insight-bg);
   border-radius: 8px;
   padding: 12px 14px;
@@ -363,28 +364,28 @@
   color: var(--text-main);
   margin-bottom: 8px;
 }
-.wire-insight-box b {
+.insight-box b {
   color: var(--primary);
 }
-.wire-toggle-list {
+.toggle-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin-top: 10px;
 }
-.wire-toggle-item {
+.toggle-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 1rem;
 }
-.wire-toggle-item input[type="checkbox"] {
+.toggle-item input[type="checkbox"] {
   width: 36px;
   height: 20px;
   accent-color: var(--primary);
 }
 
-.wire-footer {
+.footer {
   background: var(--footer-bg);
   color: var(--footer-text);
   text-align: center;
@@ -392,49 +393,49 @@
   margin-top: 48px;
   border-radius: 0;
 }
-.wire-footer-logo {
+.footer-logo {
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 6px;
   color: var(--primary);
 }
-.wire-footer-desc {
+.footer-desc {
   font-size: 1rem;
   color: var(--footer-desc);
 }
 
 @media (max-width: 1200px) {
-  .wire-preview-section {
+  .preview-section {
     max-width: 98vw;
     padding: 24px 1vw 20px 1vw;
   }
-  .wire-header, .wire-main-hero, .wire-feature-cards {
+  .header, .main-hero, .feature-cards {
     padding-left: 2vw;
     padding-right: 2vw;
   }
 }
 
 @media (max-width: 900px) {
-  .wire-feature-cards, .wire-preview-grid {
+  .feature-cards, .preview-grid {
     flex-direction: column;
     gap: 18px;
   }
-  .wire-preview-section {
+  .preview-section {
     padding: 18px 2vw;
   }
 }
 
 @media (max-width: 600px) {
-  .wire-header, .wire-main-hero, .wire-feature-cards, .wire-preview-section {
+  .header, .main-hero, .feature-cards, .preview-section {
     padding-left: 0.5vw;
     padding-right: 0.5vw;
   }
-  .wire-feature-card, .wire-today-schedule, .wire-ai-insight, .wire-alarm-settings {
+  .feature-card, .today-schedule, .ai-insight, .alarm-settings {
     min-width: 0;
     max-width: 100%;
     padding: 18px 8px;
   }
-  .wire-preview-section {
+  .preview-section {
     padding: 8px 0;
   }
 }
