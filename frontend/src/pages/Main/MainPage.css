@@ -42,46 +42,95 @@
   }
 }
 
-.main-wireframe {
-  font-family: 'Pretendard', 'Noto Sans KR', Arial, sans-serif;
-  background: var(--bg-main);
-  color: var(--text-main);
-  min-height: 100vh;
+.wire-header {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
-  overflow-x: hidden;
+  z-index: 100;
+  background: var(--bg-card);
+  transition: background 0.2s;
   box-sizing: border-box;
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
-.wire-header {
+.wire-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 5vw 16px 5vw;
-  background: var(--bg-card);
-  border-bottom: 1px solid var(--border);
+  height: 56px;
+  padding: 0 2vw;
+  box-sizing: border-box;
 }
+
 .wire-logo {
-  font-size: 1.6rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--primary);
-  letter-spacing: -1px;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  margin: 0;
+  flex: none;
+  padding-top: 28px;
 }
+
 .wire-nav {
   display: flex;
   gap: 32px;
+  align-items: center;
+  height: 56px;
+  flex: none;
+}
+
+.wire-auth {
+  display: flex;
+  align-items: center;
+  flex: none;
 }
 .wire-nav a {
+  position: relative;
   color: var(--text-main);
   text-decoration: none;
   font-weight: 500;
-  font-size: 1.05rem;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
-  transition: border 0.2s;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  padding: 0 2px;
+  transition: color 0.2s;
+  height: 56px;
+  display: flex;
+  align-items: center;
 }
-.wire-nav a.active, .wire-nav a:hover {
-  border-bottom: 2px solid var(--primary);
+
+.wire-nav a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 3px;
+  border-radius: 2px 2px 0 0;
+  background: transparent;
+  transition: background 0.2s;
+}
+
+.wire-nav a.active {
   color: var(--primary);
+}
+.wire-nav a.active::after {
+  background: var(--primary);
+}
+
+.wire-nav a:hover:not(.active) {
+  color: rgba(37, 99, 235, 0.7);
+}
+.wire-nav a:hover:not(.active)::after {
+  background: rgba(37, 99, 235, 0.3);
 }
 .wire-auth .wire-login,
 .wire-auth .wire-signup,
@@ -123,7 +172,7 @@
 .wire-main-hero {
   text-align: center;
   margin: 48px 0 32px 0;
-  padding: 0 5vw;
+  padding: 56px 5vw 0 5vw;
 }
 .wire-main-hero h1 {
   font-size: 2.2rem;

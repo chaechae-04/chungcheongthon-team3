@@ -7,16 +7,18 @@ function MainPage() {
     <div className="main-wireframe">
       {/* 상단 네비게이션 */}
       <header className="wire-header">
-        <div className="wire-logo">SmartCal</div>
-        <nav className="wire-nav">
-          <a href="#" className="active">대시보드</a>
-          <a href="#">캘린더</a>
-          <a href="#">알림 설정</a>
-          <a href="#">분석</a>
-        </nav>
-        <div className="wire-auth">
-          <Link to="/login" className="wire-login">로그인</Link>
-          <Link to="/signup" className="wire-signup">회원가입</Link>
+        <div className="wire-header-inner">
+          <div className="wire-logo">SmartCal</div>
+          <nav className="wire-nav">
+            <a href="#" className="active">대시보드</a>
+            <a href="#">캘린더</a>
+            <a href="#">알림 설정</a>
+            <a href="#">분석</a>
+          </nav>
+          <div className="wire-auth">
+            <Link to="/login" className="wire-login">로그인</Link>
+            <Link to="/signup" className="wire-signup">회원가입</Link>
+          </div>
         </div>
       </header>
       {/* 메인 헤더 */}

@@ -4,8 +4,8 @@ import "./Auth.css"
 
 function SignupPage() {
   return (
-    <div className="main-wireframe" style={{minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-      <div className="wire-logo" style={{marginBottom: 32, fontSize: '2rem'}}>SmartCal</div>
+    <div className="main-wireframe auth-center-layout">
+      <div className="wire-logo">SmartCal</div>
       <div className="wire-login-card">
         <h2 style={{marginBottom: 24, fontWeight: 700}}>회원가입</h2>
         <form className="wire-form">
