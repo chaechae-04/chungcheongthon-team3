@@ -1,0 +1,94 @@
+.main-wireframe {
+  font-family: 'Pretendard', 'Noto Sans KR', Arial, sans-serif;
+  background: var(--bg-main, #f7f9fb);
+  color: var(--text-main, #222);
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.wire-logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary, #2563eb);
+  letter-spacing: -1px;
+}
+
+.wire-login-card {
+  background: var(--bg-card, #fff);
+  border-radius: 16px;
+  box-shadow: var(--shadow, 0 2px 12px rgba(0,0,0,0.04));
+  padding: 40px 32px 32px 32px;
+  min-width: 320px;
+  max-width: 360px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wire-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+.wire-input {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border, #e5e8eb);
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+  background: var(--bg-main, #f7f9fb);
+  color: var(--text-main, #222);
+}
+.wire-input:focus {
+  border: 1.5px solid var(--primary, #2563eb);
+}
+.wire-cta {
+  background: var(--primary, #2563eb);
+  color: var(--button-text, #fff);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+  transition: background 0.2s;
+}
+.wire-cta:hover {
+  background: var(--primary-dark, #1746a2);
+}
+
+@media (max-width: 600px) {
+  .wire-login-card {
+    min-width: 0;
+    max-width: 100%;
+    padding: 18px 8px;
+  }
+}
+
+:root {
+  --bg-main: #f7f9fb;
+  --bg-card: #fff;
+  --text-main: #222;
+  --primary: #2563eb;
+  --primary-dark: #1746a2;
+  --button-text: #fff;
+  --border: #e5e8eb;
+  --shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-main: #181e2a;
+    --bg-card: #232a3a;
+    --text-main: #f3f6fa;
+    --primary: #2563eb;
+    --primary-dark: #1746a2;
+    --button-text: #fff;
+    --border: #232a3a;
+    --shadow: 0 2px 12px rgba(0,0,0,0.32);
+  }
+} 

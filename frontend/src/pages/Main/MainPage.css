@@ -1,0 +1,391 @@
+:root {
+  --bg-main: #f7f9fb;
+  --bg-card: #fff;
+  --text-main: #222;
+  --text-sub: #555;
+  --primary: #2563eb;
+  --primary-dark: #1746a2;
+  --button-bg: #f3f6fa;
+  --button-text: #fff;
+  --border: #e5e8eb;
+  --shadow: 0 2px 12px rgba(0,0,0,0.04);
+  --footer-bg: #181e2a;
+  --footer-text: #fff;
+  --footer-desc: #cbd5e1;
+  --high: #f87171;
+  --medium: #fbbf24;
+  --low: #34d399;
+  --insight-bg: #e0e7ff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-main: #181e2a;
+    --bg-card: #232a3a;
+    --text-main: #f3f6fa;
+    --text-sub: #bfc6d1;
+    --primary: #2563eb;
+    --primary-dark: #1746a2;
+    --button-bg: #232a3a;
+    --button-text: #fff;
+    --border: #232a3a;
+    --shadow: 0 2px 12px rgba(0,0,0,0.32);
+    --footer-bg: #10131a;
+    --footer-text: #60a5fa;
+    --footer-desc: #bfc6d1;
+    --high: #f87171;
+    --medium: #fbbf24;
+    --low: #34d399;
+    --insight-bg: #23304a;
+    --high-bg-dark: #3a2323;
+    --medium-bg-dark: #39321a;
+    --low-bg-dark: #1d3a2a;
+  }
+}
+
+.main-wireframe {
+  font-family: 'Pretendard', 'Noto Sans KR', Arial, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.wire-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 5vw 16px 5vw;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+}
+.wire-logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -1px;
+}
+.wire-nav {
+  display: flex;
+  gap: 32px;
+}
+.wire-nav a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.05rem;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: border 0.2s;
+}
+.wire-nav a.active, .wire-nav a:hover {
+  border-bottom: 2px solid var(--primary);
+  color: var(--primary);
+}
+.wire-auth .wire-login,
+.wire-auth .wire-signup,
+.wire-auth button.wire-login,
+.wire-auth button.wire-signup {
+  margin-left: 12px;
+  padding: 7px 18px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  background: var(--button-bg);
+  color: var(--primary);
+  transition: background 0.2s;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+.main-wireframe .wire-auth .wire-login,
+.main-wireframe .wire-auth button.wire-login {
+  background: var(--button-bg);
+  color: var(--primary);
+}
+.main-wireframe .wire-auth .wire-signup,
+.main-wireframe .wire-auth button.wire-signup {
+  background: var(--primary);
+  color: var(--button-text);
+}
+.wire-auth .wire-login:hover,
+.wire-auth button.wire-login:hover {
+  background: var(--border);
+}
+.wire-auth .wire-signup:hover,
+.wire-auth button.wire-signup:hover {
+  background: var(--primary-dark);
+}
+
+.wire-main-hero {
+  text-align: center;
+  margin: 48px 0 32px 0;
+  padding: 0 5vw;
+}
+.wire-main-hero h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--text-main);
+}
+.wire-main-hero p {
+  color: var(--text-sub);
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+}
+.wire-cta {
+  background: var(--primary);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+  transition: background 0.2s;
+}
+.wire-cta:hover {
+  background: var(--primary-dark);
+}
+
+.wire-feature-cards {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin: 32px 0 48px 0;
+  padding: 0 5vw;
+  flex-wrap: wrap;
+}
+.wire-feature-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 32px 28px;
+  min-width: 220px;
+  text-align: center;
+  flex: 1 1 260px;
+  max-width: 320px;
+  margin-bottom: 16px;
+}
+.wire-feature-icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+.wire-feature-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.wire-feature-card p {
+  color: var(--text-sub);
+  font-size: 1rem;
+}
+
+.wire-preview-section {
+  margin: 0 auto 48px auto;
+  width: 100%;
+  max-width: 1200px;
+  background: var(--bg-card);
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  padding: 36px 3vw 32px 3vw;
+  box-sizing: border-box;
+}
+.wire-preview-section h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+  color: var(--text-main);
+  text-align: center;
+}
+.wire-preview-grid {
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.wire-today-schedule, .wire-ai-insight, .wire-alarm-settings {
+  min-width: 220px;
+  flex: 1 1 320px;
+  margin-bottom: 24px;
+}
+.wire-today-schedule {
+  background: var(--bg-main);
+  border-radius: 12px;
+  padding: 24px 20px 20px 20px;
+  box-shadow: 0 1px 4px rgba(37,99,235,0.04);
+}
+.wire-today-schedule h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.wire-add-schedule {
+  float: right;
+  margin-top: -32px;
+  margin-bottom: 12px;
+  background: var(--primary);
+  color: var(--button-text);
+  border: none;
+  border-radius: 6px;
+  padding: 5px 14px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.wire-schedule-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.wire-schedule-item {
+  background: var(--bg-card);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  border-left: 6px solid var(--border);
+}
+.wire-schedule-item span {
+  margin-left: 12px;
+  font-size: 0.98rem;
+  color: var(--text-sub);
+}
+.wire-schedule-item.high {
+  border-left: 6px solid var(--high);
+  background: #fef2f2;
+}
+.wire-schedule-item.medium {
+  border-left: 6px solid var(--medium);
+  background: #fffbeb;
+}
+.wire-schedule-item.low {
+  border-left: 6px solid var(--low);
+  background: #f0fdf4;
+}
+@media (prefers-color-scheme: dark) {
+  .wire-schedule-item.high { background: var(--high-bg-dark); }
+  .wire-schedule-item.medium { background: var(--medium-bg-dark); }
+  .wire-schedule-item.low { background: var(--low-bg-dark); }
+}
+.wire-badge {
+  margin-left: 16px;
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+}
+.wire-badge.high {
+  background: var(--high);
+}
+.wire-badge.medium {
+  background: var(--medium);
+  color: #222;
+}
+.wire-badge.low {
+  background: var(--low);
+}
+
+.wire-ai-insight, .wire-alarm-settings {
+  background: var(--bg-main);
+  border-radius: 12px;
+  padding: 24px 20px 20px 20px;
+  box-shadow: 0 1px 4px rgba(37,99,235,0.04);
+}
+.wire-ai-insight h4, .wire-alarm-settings h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.wire-insight-box {
+  background: var(--insight-bg);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.98rem;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+.wire-insight-box b {
+  color: var(--primary);
+}
+.wire-toggle-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+.wire-toggle-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+.wire-toggle-item input[type="checkbox"] {
+  width: 36px;
+  height: 20px;
+  accent-color: var(--primary);
+}
+
+.wire-footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  text-align: center;
+  padding: 32px 0 18px 0;
+  margin-top: 48px;
+  border-radius: 0;
+}
+.wire-footer-logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--primary);
+}
+.wire-footer-desc {
+  font-size: 1rem;
+  color: var(--footer-desc);
+}
+
+@media (max-width: 1200px) {
+  .wire-preview-section {
+    max-width: 98vw;
+    padding: 24px 1vw 20px 1vw;
+  }
+  .wire-header, .wire-main-hero, .wire-feature-cards {
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+}
+
+@media (max-width: 900px) {
+  .wire-feature-cards, .wire-preview-grid {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .wire-preview-section {
+    padding: 18px 2vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .wire-header, .wire-main-hero, .wire-feature-cards, .wire-preview-section {
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+  }
+  .wire-feature-card, .wire-today-schedule, .wire-ai-insight, .wire-alarm-settings {
+    min-width: 0;
+    max-width: 100%;
+    padding: 18px 8px;
+  }
+  .wire-preview-section {
+    padding: 8px 0;
+  }
+}
