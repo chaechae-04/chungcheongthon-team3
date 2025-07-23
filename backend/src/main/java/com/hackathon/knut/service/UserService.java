@@ -51,21 +51,24 @@ public class UserService {
         return false;
     }
 
-    //프로필 부분 수정
-    public Optional<User> updateUserPartial(Long userId, Map<String, Object> updates) {
+    //유저 프로필 부분 수정
+    public Optional<User> updateUserPartial(Long userId, UserDto dto) {
         return userRepository.findById(userId).map(user -> {
-            if (updates.containsKey("username")) {
-                String newUsername = (String) updates.get("username");
-                // 필요 시 중복 체크 및 검증 추가
-                user.setUsername(newUsername);
-            }
-            if (updates.containsKey("email")) {
-                String newEmail = (String) updates.get("email");
-                // 필요 시 중복 체크 및 검증 추가
-                user.setEmail(newEmail);
+            //이름 수정
+            if (dto.getUsername() != null) {
+                user.setUsername(dto.getUsername());
             }
 
-            // 필요한 필드 추가 가능
+            //이메일 수정
+            if (dto.getEmail() != null) {
+                user.setEmail(dto.getEmail());
+            }
+
+            //비밀번호 수정
+            if (dto.getPw() != null) {
+                //필요 시 중복 체크 및 검증 추가
+                user.setPw(dto.getPw());
+            }
 
             userRepository.save(user);
             return user;

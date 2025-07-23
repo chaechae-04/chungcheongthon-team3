@@ -27,6 +27,7 @@ public class UserController {
         return "회원가입 성공 !";
     }
 
+
     @GetMapping("/check-email")
     public ResponseEntity<User> checkEmail(@RequestParam String email){
         Optional<User> userOpt = userService.getUserByEmail(email);
@@ -62,8 +63,8 @@ public class UserController {
     //프로필 부분 수정
     @PatchMapping("/{userId}")
     public ResponseEntity<?> updateUserPartial(@PathVariable Long userId,
-                                               @RequestBody Map<String, Object> updates) {
-        Optional<User> updatedUserOpt = userService.updateUserPartial(userId, updates);
+                                               @RequestBody UserDto dto) {
+        Optional<User> updatedUserOpt = userService.updateUserPartial(userId, dto);
         return updatedUserOpt.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
