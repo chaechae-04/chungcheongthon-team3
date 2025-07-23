@@ -1,25 +1,13 @@
 import React from "react"
 import "./MainPage.css"
 import { Link } from "react-router-dom"
+import Header from "../../components/layout/Header"
+import Footer from "../../components/layout/Footer"
 
 function MainPage() {
   return (
     <div className="mainframe">
-      <header className="header">
-        <div className="header-inner">
-          <div className="logo">SmartCal</div>
-          <nav className="nav">
-            <a href="#" className="active">대시보드</a>
-            <a href="#">캘린더</a>
-            <a href="#">알림 설정</a>
-            <a href="#">분석</a>
-          </nav>
-          <div className="auth">
-            <Link to="/login" className="login">로그인</Link>
-            <Link to="/signup" className="signup">회원가입</Link>
-          </div>
-        </div>
-      </header>
+      <Header />
       <section className="main-hero">
         <h1>AI가 분석하는 스마트한 일정 관리</h1>
         <p>당신의 일정을 AI가 분석하여 중요도를 판단하고, 최적의 알림을 제공합니다</p>
@@ -80,10 +68,7 @@ function MainPage() {
           </div>
         </div>
       </section>
-      <footer className="footer">
-        <div className="footer-logo">SmartCal</div>
-        <div className="footer-desc">AI 기반 스마트 일정 관리 서비스</div>
-      </footer>
+      <Footer />
     </div>
   )
 }
