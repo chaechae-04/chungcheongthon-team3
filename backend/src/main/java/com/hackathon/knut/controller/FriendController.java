@@ -2,10 +2,8 @@ package com.hackathon.knut.controller;
 
 import com.hackathon.knut.dto.FriendAddRequest;
 import com.hackathon.knut.service.FriendService;
-import com.hackathon.knut.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = {"http://localhost:5173", "http://127.0.0.1:5173"}) // 필요하면 CORS 설정
 public class FriendController {
 
-    private final FriendService friendService; // FriendService 객체 생성
+    private final FriendService friendService; /// FriendService 객체 생성
 
     @PostMapping
     public ResponseEntity<String> addFriend(@RequestBody FriendAddRequest request) { // 클라이언트의 String 요청을 FriendAddRequest 객체로 변환해 파라미터로 받음
