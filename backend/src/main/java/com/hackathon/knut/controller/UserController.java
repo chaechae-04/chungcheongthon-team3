@@ -6,6 +6,7 @@ import com.hackathon.knut.service.UserService;
 
 import org.springframework.http.ResponseEntity;
 
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,7 @@ public class UserController {
         return "회원가입 성공 !";
     }
 
+
     @GetMapping("/check-email")
     public ResponseEntity<User> checkEmail(@RequestParam String email){
         Optional<User> userOpt = userService.getUserByEmail(email);
@@ -39,11 +41,31 @@ public class UserController {
     }
 
 
-//  임시
+    //임시
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUser(@PathVariable Long userId) {
         Optional<User> userOpt = userService.getUserById(userId);
         return userOpt.map(ResponseEntity::ok)
                       .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    //Email을 기반으로 유저 정보 삭제
+    @DeleteMapping("/email/{email}")
+    public ResponseEntity<Void> deleteUserByEmail(@PathVariable String email) {
+        boolean deleted = userService.deleteUserByEmail(email);
+        if (deleted) {
+            return ResponseEntity.noContent().build(); // 204 No Content
+        } else {
+            return ResponseEntity.notFound().build();  // 404 Not Found
+        }
+    }
+
+    //프로필 부분 수정
+    @PatchMapping("/{userId}")
+    public ResponseEntity<?> updateUserPartial(@PathVariable Long userId,
+                                               @RequestBody UserDto dto) {
+        Optional<User> updatedUserOpt = userService.updateUserPartial(userId, dto);
+        return updatedUserOpt.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

@@ -1,0 +1,30 @@
+/* 회원가입페이지 전용 스타일 */
+.signup-title {
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+
+.login-link {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.login-link a {
+  color: var(--primary, #2563eb);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+.back-to-main {
+  margin-top: 32px;
+  color: #888;
+  text-decoration: underline;
+}
+
+.back-to-main:hover {
+  color: var(--primary, #2563eb);
+} 

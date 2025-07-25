@@ -1,0 +1,51 @@
+/* 로그인페이지 전용 스타일 */
+.login-title {
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+
+.forgot-password-link {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.forgot-password-link a {
+  color: #666;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.forgot-password-link a:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  margin-top: 24px;
+  border-top: 1px solid var(--border, #e6e6e6);
+  width: 100%;
+}
+
+.signup-link {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.signup-link a {
+  color: var(--primary, #2563eb);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+.back-to-main {
+  margin-top: 32px;
+  color: #888;
+  text-decoration: underline;
+}
+
+.back-to-main:hover {
+  color: var(--primary, #2563eb);
+} 
