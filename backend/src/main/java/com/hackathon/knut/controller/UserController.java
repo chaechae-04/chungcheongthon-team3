@@ -46,5 +46,4 @@ public class UserController {
         return userOpt.map(ResponseEntity::ok)
                       .orElseGet(() -> ResponseEntity.notFound().build());
     }
-
 }
