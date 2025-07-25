@@ -16,12 +16,6 @@ public class FriendController {
 
     private final FriendService friendService; // FriendService 객체 생성
 
-    // 임시
-    @GetMapping
-    public ResponseEntity<String> getFriendApiStatus() {
-        return ResponseEntity.ok("Friends API ready!");
-    }
-
     @PostMapping
     public ResponseEntity<String> addFriend(@RequestBody FriendAddRequest request) { // 클라이언트의 String 요청을 FriendAddRequest 객체로 변환해 파라미터로 받음
         friendService.addFriend(request); // friendService에서 친구 추가 메서드에 request에 값을 넘긴다.
