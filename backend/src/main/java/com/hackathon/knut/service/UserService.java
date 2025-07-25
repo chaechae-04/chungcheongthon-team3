@@ -42,10 +42,10 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    //유저 삭제
-    public boolean deleteUserById(Long id) {
-        if (userRepository.existsById(id)) {
-            userRepository.deleteById(id);
+    //Email을 기반으로 유저 삭제
+    public boolean deleteUserByEmail(String email) {
+        if (userRepository.existsByEmail(email)) {
+            userRepository.deleteByEmail(email);
             return true;
         }
         return false;

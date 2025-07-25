@@ -41,7 +41,7 @@ public class UserController {
     }
 
 
-//  임시
+    //임시
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUser(@PathVariable Long userId) {
         Optional<User> userOpt = userService.getUserById(userId);
@@ -49,10 +49,10 @@ public class UserController {
                       .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    //유저 정보 삭제
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
-        boolean deleted = userService.deleteUserById(userId);
+    //Email을 기반으로 유저 정보 삭제
+    @DeleteMapping("/email/{email}")
+    public ResponseEntity<Void> deleteUserByEmail(@PathVariable String email) {
+        boolean deleted = userService.deleteUserByEmail(email);
         if (deleted) {
             return ResponseEntity.noContent().build(); // 204 No Content
         } else {
