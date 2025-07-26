@@ -6,9 +6,15 @@ CREATE TABLE IF NOT EXISTS users (
     username VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    pw VARCHAR(100) NOT NULL UNIQUE
+    pw VARCHAR(100) NOT NULL,
+    nickname VARCHAR(50),
+    google_id VARCHAR(100),
+    profile_image VARCHAR(500),
+    auth_provider VARCHAR(20) DEFAULT 'LOCAL'
 );
 
-INSERT INTO users (username, email) VALUES 
-('admin', 'admin@example.com', '12345'),
-('user1', 'user1@example.com', '12346576');
+-- 테스트용 사용자 데이터 (비밀번호: 123456)
+INSERT INTO users (username, email, pw, nickname, auth_provider) VALUES 
+('admin', 'admin@example.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '관리자', 'LOCAL'),
+('testuser', 'test@example.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '테스트유저', 'LOCAL'),
+('user1', 'user1@example.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '사용자1', 'LOCAL');

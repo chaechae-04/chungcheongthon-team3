@@ -1,13 +1,12 @@
 package com.hackathon.knut.service;
 
-import com.hackathon.knut.dto.UserDto;
-import com.hackathon.knut.entity.User;
-import com.hackathon.knut.repository.UserRepository;
-
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+
+import com.hackathon.knut.dto.UserDto;
+import com.hackathon.knut.entity.User;
+import com.hackathon.knut.repository.UserRepository;
 
 @Service
 public class UserService {
@@ -27,6 +26,14 @@ public class UserService {
         user.setEmail(dto.getEmail());
         user.setPw(dto.getPw());
         user.setUsername(dto.getUsername());
+        user.setNickname(dto.getNickname());
+        user.setGoogleId(dto.getGoogleId());
+        user.setProfileImage(dto.getProfileImage());
+        if (dto.getAuthProvider() != null) {
+            user.setAuthProvider(User.AuthProvider.valueOf(dto.getAuthProvider()));
+        } else {
+            user.setAuthProvider(User.AuthProvider.LOCAL);
+        }
         userRepository.save(user);
     }
 
@@ -68,6 +75,26 @@ public class UserService {
             if (dto.getPw() != null) {
                 //필요 시 중복 체크 및 검증 추가
                 user.setPw(dto.getPw());
+            }
+
+            //닉네임 수정
+            if (dto.getNickname() != null) {
+                user.setNickname(dto.getNickname());
+            }
+
+            //프로필 이미지 수정
+            if (dto.getProfileImage() != null) {
+                user.setProfileImage(dto.getProfileImage());
+            }
+
+            //Google ID 수정
+            if (dto.getGoogleId() != null) {
+                user.setGoogleId(dto.getGoogleId());
+            }
+
+            //인증 제공자 수정
+            if (dto.getAuthProvider() != null) {
+                user.setAuthProvider(User.AuthProvider.valueOf(dto.getAuthProvider()));
             }
 
             userRepository.save(user);

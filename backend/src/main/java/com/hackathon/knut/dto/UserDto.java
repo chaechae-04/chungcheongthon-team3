@@ -13,5 +13,9 @@ public class UserDto {
     private String username;
     private Timestamp createdAt;
     private String pw;
+    private String nickname;
+    private String googleId;
+    private String profileImage;
+    private String authProvider;
 
 }
