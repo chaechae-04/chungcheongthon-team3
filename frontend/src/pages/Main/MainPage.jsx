@@ -1,19 +1,24 @@
 import React from "react"
 import "./MainPage.css"
 import { Link } from "react-router-dom"
+import { useAuth } from "../../hooks/useAuth.js"
 import Header from "../../components/layout/Header"
 import Footer from "../../components/layout/Footer"
 
 function MainPage() {
+  const { isLoggedIn } = useAuth();
+
   return (
     <div className="mainframe">
       <Header />
       <section className="main-hero">
         <h1>AI가 분석하는 스마트한 일정 관리</h1>
         <p>당신의 일정을 AI가 분석하여 중요도를 판단하고, 최적의 알림을 제공합니다</p>
-        <Link to="/signup">
-          <button className="cta">무료로 시작하기</button>
-        </Link>
+        {!isLoggedIn && (
+          <Link to="/signup">
+            <button className="cta">무료로 시작하기</button>
+          </Link>
+        )}
       </section>
       <section className="feature-cards">
         <div className="feature-card">

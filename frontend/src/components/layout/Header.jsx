@@ -1,11 +1,11 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth.js";
 import "../../pages/Main/MainPage.css";
 import "./Header.css";
 
 function Header() {
-  // 임시 로그인 상태 (실제 서비스에서는 context, redux, props 등으로 대체)
-  const isLoggedIn = true;
+  const { isLoggedIn, user, logout } = useAuth();
   const location = useLocation();
 
   return (
@@ -25,8 +25,9 @@ function Header() {
         <div className="auth">
           {isLoggedIn ? (
             <div className="header-profile">
-              <div className="header-profile-img">N</div>
-              <span className="header-profile-nickname">닉네임</span>
+              <div className="header-profile-img">{user?.nickname?.[0] || 'U'}</div>
+              <span className="header-profile-nickname">{user?.nickname || '사용자'}</span>
+              <button onClick={logout} className="logout-btn">로그아웃</button>
             </div>
           ) : (
             <>
