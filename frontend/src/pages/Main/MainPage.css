@@ -1,57 +1,6 @@
-:root {
-  --bg-main: #f7f9fb;
-  --bg-card: #fff;
-  --text-main: #222;
-  --text-sub: #555;
-  --primary: #2563eb;
-  --primary-dark: #1746a2;
-  --button-bg: #f3f6fa;
-  --button-text: #fff;
-  --border: #e5e8eb;
-  --shadow: 0 2px 12px rgba(0,0,0,0.04);
-  --footer-bg: #181e2a;
-  --footer-text: #fff;
-  --footer-desc: #cbd5e1;
-  --high: #f87171;
-  --medium: #fbbf24;
-  --low: #34d399;
-  --insight-bg: #e0e7ff;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-main: #181e2a;
-    --bg-card: #232a3a;
-    --text-main: #f3f6fa;
-    --text-sub: #bfc6d1;
-    --primary: #2563eb;
-    --primary-dark: #1746a2;
-    --button-bg: #2d3748;
-    --button-text: #fff;
-    --border: #0d1117;
-    --shadow: 0 2px 12px rgba(0,0,0,0.32);
-    --footer-bg: #10131a;
-    --footer-text: #60a5fa;
-    --footer-desc: #bfc6d1;
-    --high: #f87171;
-    --medium: #fbbf24;
-    --low: #34d399;
-    --insight-bg: #23304a;
-    --high-bg-dark: #3a2323;
-    --medium-bg-dark: #39321a;
-    --low-bg-dark: #1d3a2a;
-  }
-}
+/* CSS Variables are now imported from /styles/variables.css */
 
-.mainframe {
-  font-family: 'Pretendard', 'Noto Sans KR', Arial, sans-serif;
-  background: var(--bg-main);
-  color: var(--text-main);
-  min-height: 100vh;
-  width: 100vw;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  padding-top: 56px;
-}
+/* .mainframe now uses .page-container from variables.css */
 
 .header {
   position: fixed;
@@ -311,59 +260,7 @@
   flex-direction: column;
   gap: 12px;
 }
-.schedule-item {
-  background: var(--bg-card);
-  border-radius: 8px;
-  padding: 14px 18px;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  border-left: 6px solid var(--border);
-}
-.schedule-item span {
-  margin-left: 12px;
-  font-size: 0.98rem;
-  color: var(--text-sub);
-}
-.schedule-item.high {
-  border-left: 6px solid var(--high);
-  background: #fef2f2;
-}
-.schedule-item.medium {
-  border-left: 6px solid var(--medium);
-  background: #fffbeb;
-}
-.schedule-item.low {
-  border-left: 6px solid var(--low);
-  background: #f0fdf4;
-}
-@media (prefers-color-scheme: dark) {
-  .schedule-item.high { background: var(--high-bg-dark); }
-  .schedule-item.medium { background: var(--medium-bg-dark); }
-  .schedule-item.low { background: var(--low-bg-dark); }
-}
-.badge {
-  margin-left: 16px;
-  padding: 2px 10px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #fff;
-}
-.badge.high {
-  background: var(--high);
-  color: #222;
-}
-.badge.medium {
-  background: var(--medium);
-  color: #222;
-}
-.badge.low {
-  background: var(--low);
-  color: #222;
-}
+/* Schedule styles are now handled by ScheduleItem component */
 
 .ai-insight, .alarm-settings {
   background: var(--bg-main);

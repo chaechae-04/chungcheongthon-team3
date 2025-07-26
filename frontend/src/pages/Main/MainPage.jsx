@@ -4,12 +4,13 @@ import { Link } from "react-router-dom"
 import { useAuth } from "../../hooks/useAuth.js"
 import Header from "../../components/layout/Header"
 import Footer from "../../components/layout/Footer"
+import ScheduleItem from "../../components/ScheduleItem.jsx"
 
 function MainPage() {
   const { isLoggedIn } = useAuth();
 
   return (
-    <div className="mainframe">
+    <div className="page-container mainframe">
       <Header />
       <section className="main-hero">
         <h1>AI가 분석하는 스마트한 일정 관리</h1>
@@ -44,9 +45,24 @@ function MainPage() {
             <h4>오늘의 일정</h4>
             <button className="add-schedule">+ 일정 추가</button>
             <div className="schedule-list">
-              <div className="schedule-item high">프로젝트 발표 <span>오후 2:00 - 3:00</span> <span className="badge high">높은 중요도</span></div>
-              <div className="schedule-item medium">팀 미팅 <span>오후 4:00 - 5:00</span> <span className="badge medium">보통 중요도</span></div>
-              <div className="schedule-item low">점심 약속 <span>오후 12:00 - 1:00</span> <span className="badge low">낮은 중요도</span></div>
+              <ScheduleItem
+                title="프로젝트 발표"
+                time="오후 2:00 - 3:00"
+                priority="high"
+                onClick={() => console.log('View: 프로젝트 발표')}
+              />
+              <ScheduleItem
+                title="팀 미팅"
+                time="오후 4:00 - 5:00"
+                priority="medium"
+                onClick={() => console.log('View: 팀 미팅')}
+              />
+              <ScheduleItem
+                title="점심 약속"
+                time="오후 12:00 - 1:00"
+                priority="low"
+                onClick={() => console.log('View: 점심 약속')}
+              />
             </div>
           </div>
           <div className="ai-insight">

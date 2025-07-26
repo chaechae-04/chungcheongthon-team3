@@ -1,0 +1,108 @@
+/* Global CSS Variables */
+:root {
+  /* Colors */
+  --bg-main: #f7f9fb;
+  --bg-card: #fff;
+  --text-main: #222;
+  --text-sub: #555;
+  --primary: #2563eb;
+  --primary-dark: #1746a2;
+  --button-bg: #f3f6fa;
+  --button-text: #fff;
+  --border: #e5e8eb;
+  --shadow: 0 2px 12px rgba(0,0,0,0.04);
+  
+  /* Footer */
+  --footer-bg: #181e2a;
+  --footer-text: #fff;
+  --footer-desc: #cbd5e1;
+  
+  /* Priority Colors */
+  --high: #f87171;
+  --medium: #fbbf24;
+  --low: #34d399;
+  
+  /* Special Backgrounds */
+  --insight-bg: #e0e7ff;
+}
+
+/* Dark Mode Variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Colors */
+    --bg-main: #181e2a;
+    --bg-card: #232a3a;
+    --text-main: #f3f6fa;
+    --text-sub: #bfc6d1;
+    --button-bg: #2d3748;
+    --button-text: #fff;
+    --border: #0d1117;
+    --shadow: 0 2px 12px rgba(0,0,0,0.32);
+    
+    /* Footer */
+    --footer-bg: #10131a;
+    --footer-text: #60a5fa;
+    --footer-desc: #bfc6d1;
+    
+    /* Priority Colors (same as light mode) */
+    --high: #f87171;
+    --medium: #fbbf24;
+    --low: #34d399;
+    
+    /* Special Backgrounds */
+    --insight-bg: #23304a;
+    --high-bg-dark: #3a2323;
+    --medium-bg-dark: #39321a;
+    --low-bg-dark: #1d3a2a;
+  }
+}
+
+/* Common Utility Classes */
+.page-container {
+  font-family: 'Pretendard', 'Noto Sans KR', Arial, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding-top: 56px;
+}
+
+.page-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.btn {
+  background: var(--primary);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+}
+
+.btn-secondary {
+  background: var(--button-bg);
+  color: var(--text-main);
+}
+
+.btn-secondary:hover {
+  background: var(--border);
+} 

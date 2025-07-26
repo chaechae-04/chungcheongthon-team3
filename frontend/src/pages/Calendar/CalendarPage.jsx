@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import "./CalendarPage.css"
 import Header from "../../components/layout/Header"
 import Footer from "../../components/layout/Footer"
+import ScheduleItem from "../../components/ScheduleItem.jsx"
 
 function CalendarPage() {
   const [currentDate, setCurrentDate] = useState(new Date())
@@ -106,9 +107,9 @@ function CalendarPage() {
   const dayNames = ['일', '월', '화', '수', '목', '금', '토']
 
   return (
-    <div className="calendar-page">
+    <div className="page-container calendar-page">
       <Header />
-      <main className="calendar-main">
+      <main className="page-main calendar-main">
         <div className="calendar-container">
           <div className="calendar-view">
             <div className="monthly-calendar">
@@ -173,21 +174,24 @@ function CalendarPage() {
             </div>
             
             <div className="schedule-list">
-              <div className="schedule-item high">
-                <button className="schedule-title-btn">프로젝트 발표</button>
-                <span className="schedule-time">오후 2:00 - 3:00</span>
-                <span className="badge high">높은 중요도</span>
-              </div>
-              <div className="schedule-item medium">
-                <button className="schedule-title-btn">팀 미팅</button>
-                <span className="schedule-time">오후 4:00 - 5:00</span>
-                <span className="badge medium">보통 중요도</span>
-              </div>
-              <div className="schedule-item low">
-                <button className="schedule-title-btn">점심 약속</button>
-                <span className="schedule-time">오후 12:00 - 1:00</span>
-                <span className="badge low">낮은 중요도</span>
-              </div>
+              <ScheduleItem
+                title="프로젝트 발표"
+                time="오후 2:00 - 3:00"
+                priority="high"
+                onClick={() => console.log('Edit: 프로젝트 발표')}
+              />
+              <ScheduleItem
+                title="팀 미팅"
+                time="오후 4:00 - 5:00"
+                priority="medium"
+                onClick={() => console.log('Edit: 팀 미팅')}
+              />
+              <ScheduleItem
+                title="점심 약속"
+                time="오후 12:00 - 1:00"
+                priority="low"
+                onClick={() => console.log('Edit: 점심 약속')}
+              />
             </div>
           </div>
         </div>
