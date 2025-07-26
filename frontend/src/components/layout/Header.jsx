@@ -19,8 +19,16 @@ function Header() {
           ) : (
             <span className="nav-disabled">캘린더</span>
           )}
-          <a href="#">알림 설정</a>
-          <a href="#">분석</a>
+          {isLoggedIn ? (
+            <a href="#" className={location.pathname === "/alarm" ? "active" : ""}>알림 설정</a>
+          ) : (
+            <span className="nav-disabled">알림 설정</span>
+          )}
+          {isLoggedIn ? (
+            <a href="#" className={location.pathname === "/analysis" ? "active" : ""}>분석</a>
+          ) : (
+            <span className="nav-disabled">분석</span>
+          )}
         </nav>
         <div className="auth">
           {isLoggedIn ? (

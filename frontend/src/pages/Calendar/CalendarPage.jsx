@@ -174,16 +174,19 @@ function CalendarPage() {
             
             <div className="schedule-list">
               <div className="schedule-item high">
-                <div className="schedule-title">프로젝트 발표</div>
-                <div className="schedule-details">오후 2:00 - 3:00 | 높은 중요도</div>
+                <button className="schedule-title-btn">프로젝트 발표</button>
+                <span className="schedule-time">오후 2:00 - 3:00</span>
+                <span className="badge high">높은 중요도</span>
               </div>
               <div className="schedule-item medium">
-                <div className="schedule-title">팀 미팅</div>
-                <div className="schedule-details">오후 4:00 - 5:00 | 보통 중요도</div>
+                <button className="schedule-title-btn">팀 미팅</button>
+                <span className="schedule-time">오후 4:00 - 5:00</span>
+                <span className="badge medium">보통 중요도</span>
               </div>
               <div className="schedule-item low">
-                <div className="schedule-title">점심 약속</div>
-                <div className="schedule-details">오후 12:00 - 1:00 | 낮은 중요도</div>
+                <button className="schedule-title-btn">점심 약속</button>
+                <span className="schedule-time">오후 12:00 - 1:00</span>
+                <span className="badge low">낮은 중요도</span>
               </div>
             </div>
           </div>
