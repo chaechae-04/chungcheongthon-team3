@@ -5,7 +5,7 @@ import "./Header.css";
 
 function Header() {
   // 임시 로그인 상태 (실제 서비스에서는 context, redux, props 등으로 대체)
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <header className="header">

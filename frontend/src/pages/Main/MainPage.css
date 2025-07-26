@@ -221,6 +221,22 @@
   flex: 1 1 260px;
   max-width: 320px;
   margin-bottom: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  background: #f8faff;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .feature-card:hover {
+    background: #1e2632;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
 }
 .feature-icon {
   font-size: 2.2rem;
