@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth.js";
 import "../../pages/Main/MainPage.css";
 import "./Header.css";
@@ -7,6 +7,7 @@ import "./Header.css";
 function Header() {
   const { isLoggedIn, user, logout } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <header className="header">
@@ -35,7 +36,15 @@ function Header() {
             <div className="header-profile">
               <div className="header-profile-img">{user?.nickname?.[0] || 'U'}</div>
               <span className="header-profile-nickname">{user?.nickname || '사용자'}</span>
-              <button onClick={logout} className="logout-btn">로그아웃</button>
+              <button 
+                onClick={() => {
+                  logout();
+                  navigate('/');
+                }} 
+                className="logout-btn"
+              >
+                로그아웃
+              </button>
             </div>
           ) : (
             <>
