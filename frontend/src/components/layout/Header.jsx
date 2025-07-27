@@ -34,7 +34,7 @@ function Header() {
         <div className="auth">
           {isLoggedIn ? (
             <div className="header-profile">
-              <div className="header-profile-img">{user?.nickname?.[0] || 'U'}</div>
+              <Link to= "/profile" className="header-profile-img">{user?.nickname?.[0] || 'U'}</Link>
               <span className="header-profile-nickname">{user?.nickname || '사용자'}</span>
               <button 
                 onClick={() => {
