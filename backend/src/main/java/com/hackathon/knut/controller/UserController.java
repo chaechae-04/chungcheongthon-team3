@@ -3,6 +3,8 @@ package com.hackathon.knut.controller;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +36,6 @@ public class UserController {
         return "회원가입 성공 !";
     }
 
-
     @GetMapping("/check-email")
     public ResponseEntity<User> checkEmail(@RequestParam String email){
         Optional<User> userOpt = userService.getUserByEmail(email);
@@ -43,10 +44,20 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public Optional<User> getCurrentUser(){
-        return userService.getUserByEmail("admin@example.com"); // 임시로 하드코딩
+    public ResponseEntity<User> getCurrentUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        
+        if (authentication == null || !authentication.isAuthenticated() || 
+            "anonymousUser".equals(authentication.getName())) {
+            return ResponseEntity.status(401).build(); // Unauthorized
+        }
+        
+        String userEmail = authentication.getName();
+        Optional<User> userOpt = userService.getUserByEmail(userEmail);
+        
+        return userOpt.map(ResponseEntity::ok)
+                      .orElseGet(() -> ResponseEntity.notFound().build());
     }
-
 
     //임시
     @GetMapping("/{userId}")
