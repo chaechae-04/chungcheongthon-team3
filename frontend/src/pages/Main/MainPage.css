@@ -1,0 +1,360 @@
+/* CSS Variables are now imported from /styles/variables.css */
+
+/* .mainframe now uses .page-container from variables.css */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 100;
+  background: var(--bg-card);
+  transition: background 0.2s;
+  box-sizing: border-box;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 2vw;
+  box-sizing: border-box;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  height: 56px;
+  margin: 0;
+  flex: none;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  height: 56px;
+  flex: none;
+}
+
+.nav a {
+  position: relative;
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  padding: 0 2px;
+  transition: color 0.2s;
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+.nav a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 3px;
+  border-radius: 2px 2px 0 0;
+  background: transparent;
+  transition: background 0.2s;
+}
+
+.nav a.active {
+  color: var(--primary);
+}
+.nav a.active::after {
+  background: var(--primary);
+}
+
+.nav a:hover:not(.active) {
+  color: rgba(37, 99, 235, 0.7);
+}
+.nav a:hover:not(.active)::after {
+  background: rgba(37, 99, 235, 0.3);
+}
+
+.auth {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.login, .signup, button.login, button.signup {
+  margin-left: 12px;
+  padding: 7px 18px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  background: var(--button-bg);
+  color: var(--primary);
+  transition: background 0.2s;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+.login:hover, button.login:hover {
+  background: var(--border);
+}
+.signup, button.signup {
+  background: var(--primary);
+  color: var(--button-text);
+}
+.signup:hover, button.signup:hover {
+  background: var(--primary-dark);
+}
+
+.main-hero {
+  text-align: center;
+  margin: 48px 0 32px 0;
+  padding: 56px 5vw 0 5vw;
+}
+.main-hero h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--text-main);
+}
+.main-hero p {
+  color: var(--text-sub);
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+}
+.cta {
+  background: var(--primary);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+  transition: background 0.2s;
+}
+.cta:hover {
+  background: var(--primary-dark);
+}
+
+.feature-cards {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin: 32px 0 48px 0;
+  padding: 0 5vw;
+  flex-wrap: wrap;
+}
+.feature-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 32px 28px;
+  min-width: 220px;
+  text-align: center;
+  flex: 1 1 260px;
+  max-width: 320px;
+  margin-bottom: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  background: #f8faff;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .feature-card:hover {
+    background: #1e2632;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+}
+.feature-icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+.feature-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.feature-card p {
+  color: var(--text-sub);
+  font-size: 1rem;
+}
+
+.preview-section {
+  margin: 0 auto 48px auto;
+  width: 100%;
+  max-width: 1200px;
+  background: var(--bg-card);
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  padding: 36px 3vw 32px 3vw;
+  box-sizing: border-box;
+}
+.preview-section h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+  color: var(--text-main);
+  text-align: center;
+}
+.preview-grid {
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.today-schedule, .ai-insight, .alarm-settings {
+  min-width: 220px;
+  flex: 1 1 320px;
+  margin-bottom: 24px;
+}
+.today-schedule {
+  background: var(--bg-main);
+  border-radius: 12px;
+  padding: 20px;
+  padding-top: 0;
+  box-shadow: 0 1px 4px rgba(37,99,235,0.04);
+}
+.today-schedule h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.add-schedule {
+  float: right;
+  margin-top: -28px;
+  margin-bottom: 12px;
+  background: var(--primary);
+  color: var(--button-text);
+  border: none;
+  border-radius: 6px;
+  padding: 5px 14px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.schedule-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+/* Schedule styles are now handled by ScheduleItem component */
+
+.ai-insight, .alarm-settings {
+  background: var(--bg-main);
+  border-radius: 12px;
+  padding: 20px;
+  padding-top: 0;
+  box-shadow: 0 1px 4px rgba(37,99,235,0.04);
+}
+.ai-insight h4, .alarm-settings h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.insight-box {
+  background: var(--insight-bg);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.98rem;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+.insight-box b {
+  color: var(--primary);
+}
+.toggle-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 0;
+  margin-top: 10px;
+}
+.toggle-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+.toggle-item input[type="checkbox"] {
+  width: 36px;
+  height: 20px;
+  accent-color: var(--primary);
+}
+
+.footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  text-align: center;
+  padding: 32px 0 18px 0;
+  margin-top: 48px;
+  border-radius: 0;
+}
+.footer-logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--primary);
+}
+.footer-desc {
+  font-size: 1rem;
+  color: var(--footer-desc);
+}
+
+@media (max-width: 1200px) {
+  .preview-section {
+    max-width: 98vw;
+    padding: 24px 1vw 20px 1vw;
+  }
+  .header, .main-hero, .feature-cards {
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+}
+
+@media (max-width: 900px) {
+  .feature-cards, .preview-grid {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .preview-section {
+    padding: 18px 2vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .header, .main-hero, .feature-cards, .preview-section {
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+  }
+  .feature-card, .today-schedule, .ai-insight, .alarm-settings {
+    min-width: 0;
+    max-width: 100%;
+    padding: 18px 8px;
+  }
+  .preview-section {
+    padding: 8px 0;
+  }
+}

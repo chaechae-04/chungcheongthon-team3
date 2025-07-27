@@ -1,0 +1,245 @@
+/* CSS Variables are now imported from /styles/variables.css */
+
+/* .calendar-page now uses .page-container from variables.css */
+/* .calendar-main now uses .page-main from variables.css */
+
+.calendar-container {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+}
+
+.calendar-view {
+  flex: 1;
+}
+
+.monthly-calendar {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.calendar-header {
+  margin-bottom: 20px;
+}
+
+.calendar-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.month-nav-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.month-nav-btn:hover {
+  background: var(--bg-main);
+}
+
+.weekdays-header {
+  background: var(--bg-main);
+  border-radius: 6px;
+  padding: 8px 0;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.weekday {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  text-align: center;
+  flex: 1;
+}
+
+.weekday:first-child {
+  color: #cc3333;
+}
+
+.weekday:last-child {
+  color: var(--primary);
+}
+
+.calendar-grid {
+  background: var(--bg-main);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.week-row {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+
+.week-row:last-child {
+  border-bottom: none;
+}
+
+.day {
+  flex: 1;
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.day.current-month {
+  color: var(--text-main);
+}
+
+.day.current-month:hover {
+  background: var(--bg-main);
+}
+
+.day.prev-month,
+.day.next-month {
+  color: #999;
+}
+
+.day.selected {
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+}
+
+.day.today {
+  background: #ff6b6b;
+  color: white;
+  font-weight: 600;
+}
+
+.day.today.selected {
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+}
+
+.weekly-calendar {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.weekly-calendar h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 15px;
+}
+
+.weekly-schedule {
+  background: var(--bg-main);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.week-day {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-main);
+  text-align: center;
+  flex: 1;
+}
+
+.week-day.selected {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.schedule-view {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 30px;
+  width: 451px;
+}
+
+.schedule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.schedule-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.add-schedule-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-schedule-btn:hover {
+  background: var(--primary-dark);
+}
+
+.schedule-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Schedule styles are now handled by ScheduleItem component */
+
+@media (max-width: 900px) {
+  .calendar-container {
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .schedule-view {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .calendar-main {
+    padding: 16px;
+  }
+  
+  .monthly-calendar,
+  .weekly-calendar,
+  .schedule-view {
+    padding: 15px;
+  }
+  
+  .day {
+    padding: 8px 4px;
+    font-size: 12px;
+  }
+} 
