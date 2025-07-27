@@ -27,6 +27,14 @@ function LoginPage() {
     setError("")
     setIsLoading(true)
 
+    // 이메일 유효성 검사
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email)) {
+      setError("올바른 이메일 형식을 입력해주세요.")
+      setIsLoading(false)
+      return
+    }
+
     try {
       const response = await fetch("http://localhost:8080/api/auth/login", {
         method: "POST",
@@ -56,8 +64,12 @@ function LoginPage() {
         // 메인페이지로 리다이렉트
         navigate("/")
       } else {
-        const errorData = await response.json()
-        setError(errorData.message || "로그인에 실패했습니다.")
+        try {
+          const errorData = await response.json()
+          setError(errorData.message || `로그인에 실패했습니다. (${response.status})`)
+        } catch {
+          setError(`로그인에 실패했습니다. (${response.status})`)
+        }
       }
     } catch (err) {
       setError("서버 연결에 실패했습니다.")
@@ -75,7 +87,7 @@ function LoginPage() {
         <h2 className="login-title">로그인</h2>
         <form className="wire-form" onSubmit={handleSubmit}>
           <input 
-            type="email" 
+            type="text" 
             name="email"
             placeholder="이메일을 입력하세요" 
             className="wire-input"
