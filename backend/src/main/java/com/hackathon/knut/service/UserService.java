@@ -2,6 +2,8 @@ package com.hackathon.knut.service;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.hackathon.knut.dto.UserDto;
@@ -11,6 +13,9 @@ import com.hackathon.knut.repository.UserRepository;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
@@ -24,7 +29,7 @@ public class UserService {
         }
         User user = new User();
         user.setEmail(dto.getEmail());
-        user.setPw(dto.getPw());
+        user.setPw(passwordEncoder.encode(dto.getPw())); // BCrypt 해시 적용
         user.setUsername(dto.getUsername());
         user.setNickname(dto.getNickname());
         user.setGoogleId(dto.getGoogleId());
@@ -36,8 +41,6 @@ public class UserService {
         }
         userRepository.save(user);
     }
-
-
 
     // 이메일 사용 가능 한지 확인하는 메소드
     public boolean isEmailAvailable(String email){
@@ -71,10 +74,9 @@ public class UserService {
                 user.setEmail(dto.getEmail());
             }
 
-            //비밀번호 수정
+            //비밀번호 수정 - BCrypt 해시 적용
             if (dto.getPw() != null) {
-                //필요 시 중복 체크 및 검증 추가
-                user.setPw(dto.getPw());
+                user.setPw(passwordEncoder.encode(dto.getPw())); // BCrypt 해시 적용
             }
 
             //닉네임 수정
