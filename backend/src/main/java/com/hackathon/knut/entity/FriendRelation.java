@@ -21,6 +21,9 @@ public class FriendRelation {
     @JoinColumn(name = "friend_id")
     private User friend;
 
+    //친구에게 붙인 별칭
+    private String friendNickname;
+
     // (선택) 친구 관계 생성 시각
     private LocalDateTime createAt = LocalDateTime.now();
 
@@ -30,5 +33,9 @@ public class FriendRelation {
     public FriendRelation(User user, User friend){
         this.user = user;
         this.friend = friend;
+    }
+
+    public void setFriendNickname(String friendNickname) {
+        this.friendNickname = friendNickname;
     }
 }
