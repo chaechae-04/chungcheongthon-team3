@@ -1,62 +1,102 @@
 package com.hackathon.knut.service;
 
 import java.util.List;
-import java.util.Optional;
-
-import com.hackathon.knut.dto.ScheduleDto;
-import com.hackathon.knut.entity.Schedule;
-import com.hackathon.knut.repository.ScheduleRepository;
+import com.hackathon.knut.dto.ScheduleDto;      // 일정 DTO(class)
+import com.hackathon.knut.entity.Schedule;     // 일정 엔티티(class)
+import com.hackathon.knut.repository.ScheduleRepository; // JPA repository
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service // ScheduleService 빈(서비스 계층 구현체)로 등록
+@Service // 빈 등록: ScheduleServiceImpl를 서비스 레이어로 사용
 public class ScheduleServiceImpl implements ScheduleService {
-    private final ScheduleRepository scheduleRepository; // JPA 레포지토리 의존성 선언
 
-    // Spring이 생성자 주입으로 레포지토리 자동 할당
-    public ScheduleServiceImpl(ScheduleRepository scheduleRepository) {
-        this.scheduleRepository = scheduleRepository;
+    // 의존성 필드 선언 및 생성자 주입
+    private final ScheduleRepository scheduleRepository;   // 일정 CRUD와 사용자별 조회
+    private final AiService aiService;                    // OpenAI AI 분석용 서비스
+    private final NotificationService notificationService;// 알림함 저장용 서비스
+    private final PushService pushService;                // 푸시 알림 전송용 서비스
+    private final MailService mailService;                // 이메일 발송 서비스
+
+    // 생성자에서 의존성(빈) 모두 받아옴 (스프링 DI)
+    public ScheduleServiceImpl(
+            ScheduleRepository scheduleRepository,
+            AiService aiService,
+            NotificationService notificationService,
+            PushService pushService,
+            MailService mailService
+    ) {
+        this.scheduleRepository = scheduleRepository; // 주입받은 레포지토리 할당
+        this.aiService = aiService;                   // 주입받은 OpenAI용 서비스 할당
+        this.notificationService = notificationService;
+        this.pushService = pushService;
+        this.mailService = mailService;
     }
 
+    // 일정 추가 및 AI + 알림 분기
     @Override
     public Schedule addSchedule(ScheduleDto dto) {
-        // ScheduleDto의 정보로 새로운 Schedule 엔티티 객체 생성
-        Schedule schedule = new Schedule();
-        schedule.setUserId(dto.getUserId()); // 사용자 ID 지정
-        schedule.setTitle(dto.getTitle()); // 일정 제목 지정
-        schedule.setType(dto.getType()); // 일정 분류(타입) 저장
-        schedule.setStartTime(dto.getStartTime()); // 시작 시간 지정
-        schedule.setEndTime(dto.getEndTime()); // 종료 시간 지정
-        schedule.setPriority(dto.getPriority()); // 중요도(우선순위) 저장
-        schedule.setCompleted(false); // 일정 추가 시, 미완료 상태로 초기화
-        return scheduleRepository.save(schedule); // DB에 저장 후, 저장된 엔티티 반환
+        Schedule schedule = new Schedule(); // 빈 엔티티 생성
+        schedule.setUserId(dto.getUserId());           // 사용자ID 세팅
+        schedule.setTitle(dto.getTitle());             // 제목 세팅
+        schedule.setType(dto.getType());               // 종류/분류 세팅
+        schedule.setStartTime(dto.getStartTime());     // 시작시간
+        schedule.setEndTime(dto.getEndTime());         // 종료시간
+        schedule.setPriority(dto.getPriority());       // 중요도
+        schedule.setCompleted(false);                  // 초기 완료상태 false
+
+        // (1) OpenAI로 중요도별 알림/조치 분석 요청
+        String aiResult = aiService.analyzeByPriority(
+                dto.getTitle(), dto.getPriority(), dto.getStartTime().toString()
+        );
+
+        // (2) OpenAI 응답에 따라 각종 알림/푸시/메일 등 분기 처리
+        switch (aiResult.trim()) {
+            case "필요없음":
+                // 별도 알림 X (DB에만 저장)
+                break;
+            case "가벼운 알림":
+                notificationService.saveNotification(schedule, "가벼운 알림 내용");
+                break;
+            case "일반 알림":
+                notificationService.saveNotification(schedule, "일반 알림 내용");
+                pushService.sendPush(schedule.getUserId(), "일정 알림", "일반 일정입니다!");
+                break;
+            case "중요 알림":
+            case "긴급 알림":
+                notificationService.saveNotification(schedule, aiResult.trim());
+                pushService.sendPush(schedule.getUserId(), "⚠️중요 일정", "긴급! 중요한 일정입니다.");
+                mailService.sendMail(schedule.getUserId(), "중요/긴급 알림 메일", "일정이 곧 있습니다!");
+                break;
+            default:
+                // 예외 또는 예상밖 답변일 때 처리
+                break;
+        }
+
+        // (3) 일정 DB 저장(영속화)
+        return scheduleRepository.save(schedule);
     }
 
+    // 유저별 전체 일정 목록 조회
     @Override
     public List<Schedule> getSchedulesByUserId(Long userId) {
-        // 레포지토리를 통해 userId별 모든 일정 목록을 조회하여 반환
         return scheduleRepository.findByUserId(userId);
     }
 
+    // 일정 완료 표시 (completed = true)
     @Override
-    @Transactional // 데이터베이스 트랜잭션 내에서 수행
+    @Transactional
     public void markComplete(Long scheduleId) {
-        // 스케줄 ID로 일정 엔티티를 조회하고 없으면 예외 발생
         Schedule schedule = scheduleRepository.findById(scheduleId)
                 .orElseThrow(() -> new IllegalArgumentException("일정이 존재하지 않습니다. ID=" + scheduleId));
-        schedule.setCompleted(true); // 완료 상태 true로 설정
-        // JPA의 변경감지(Dirty Checking)로 트랜잭션 종료 시 자동 저장됨
-        // 명시적 저장이 필요한 경우 주석 해제
-        // scheduleRepository.save(schedule);
+        schedule.setCompleted(true);
     }
 
+    // 일정 중요도(우선순위) 변경
     @Override
-    @Transactional // 중요도 변경도 트랜잭션 내에서 처리 권장
+    @Transactional
     public void updatePriority(Long scheduleId, int priority) {
-        // scheduleId로 일정 조회, 없으면 예외 발생
         Schedule schedule = scheduleRepository.findById(scheduleId)
                 .orElseThrow(() -> new IllegalArgumentException("일정이 존재하지 않습니다. ID=" + scheduleId));
-        schedule.setPriority(priority); // 새로운 중요도 값으로 변경
-        // Dirty Checking으로 트랜잭션 끝나면 DB 반영
+        schedule.setPriority(priority);
     }
 }
