@@ -2,6 +2,7 @@ package com.hackathon.knut.controller;
 
 import com.hackathon.knut.dto.ScheduleDto; // 일정 생성/수정용 DTO 임포트
 import com.hackathon.knut.entity.Schedule; // 일정 엔티티 임포트
+import com.hackathon.knut.service.ScheduleAiManagerService;
 import com.hackathon.knut.service.ScheduleService; // 비즈니스 로직 서비스를 임포트
 import org.springframework.http.ResponseEntity; // HTTP 응답 객체 사용
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List; // 일정 목록 조회용 컬렉션 임포트
 public class ScheduleController {
 
     private final ScheduleService scheduleService; // 서비스(비즈니스 로직) 의존성 주입
+    ScheduleAiManagerService scheduleAiManagerService;
 
     public ScheduleController(ScheduleService scheduleService) {
         this.scheduleService = scheduleService; // 생성자에서 서비스 주입
@@ -45,5 +47,12 @@ public class ScheduleController {
     public ResponseEntity<?> updatePriority(@PathVariable Long scheduleId, @RequestBody ScheduleDto scheduleDto) {
         scheduleService.updatePriority(scheduleId, scheduleDto.getPriority()); // 서비스 호출로 중요도 변경
         return ResponseEntity.ok().body("중요도 변경됨"); // 변경 완료 메시지 응답
+    }
+
+    @GetMapping("/api/ai/schedule-report")
+    public ResponseEntity<String> getScheduleReport(@RequestParam Long userId) {
+
+        String report = scheduleAiManagerService.analyzeUserSchedules(userId);
+        return ResponseEntity.ok(report);
     }
 }

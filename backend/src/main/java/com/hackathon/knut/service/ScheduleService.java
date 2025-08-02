@@ -32,4 +32,5 @@ public interface ScheduleService {
      * @param priority 새로 설정할 중요도 값
      */
     void updatePriority(Long scheduleId, int priority);
+
 }
