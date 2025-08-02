@@ -21,7 +21,7 @@ function Header() {
             <span className="nav-disabled">캘린더</span>
           )}
           {isLoggedIn ? (
-            <a href="#" className={location.pathname === "/alarm" ? "active" : ""}>알림 설정</a>
+            <Link to="/notification" className={location.pathname === "/notification" ? "active" : ""}>알림 설정</Link>
           ) : (
             <span className="nav-disabled">알림 설정</span>
           )}

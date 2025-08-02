@@ -183,5 +183,27 @@ export const scheduleService = {
       console.error('일정 삭제 오류:', error);
       throw error;
     }
+  },
+
+  // 알림 설정 업데이트
+  async updateNotificationSetting(scheduleId, notificationEnabled) {
+    try {
+      const response = await fetch(`${API_BASE_URL}/schedules/${scheduleId}/notification`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ notificationEnabled })
+      });
+
+      if (!response.ok) {
+        throw new Error('알림 설정 변경에 실패했습니다.');
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('알림 설정 변경 오류:', error);
+      throw error;
+    }
   }
 }; 

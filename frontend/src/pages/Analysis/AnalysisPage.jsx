@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import "../../styles/variables.css"
 import "./AnalysisPage.css"
 import Header from "../../components/layout/Header"
 import Footer from "../../components/layout/Footer"
