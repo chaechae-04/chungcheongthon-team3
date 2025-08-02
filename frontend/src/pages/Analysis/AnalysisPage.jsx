@@ -159,7 +159,7 @@ function AnalysisPage() {
             </div>
             
             {/* 알림 통계 */}
-            <div className="stats-card notification-stats">
+            {/* <div className="stats-card notification-stats">
               <h3>알림 통계</h3>
               <div className="stats-items">
                 <div className="stat-item">
@@ -175,7 +175,7 @@ function AnalysisPage() {
                   <span className="stat-value unread">3건</span>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           
           {/* AI 분석 인사이트 */}

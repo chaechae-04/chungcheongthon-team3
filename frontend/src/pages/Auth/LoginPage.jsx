@@ -100,9 +100,9 @@ function LoginPage() {
         </form>
         
         {/* Google 로그인 버튼 */}
-        <button type="button" className="google-login-btn">
+        {/* <button type="button" className="google-login-btn">
           Google 로그인
-        </button>
+        </button> */}
 
         {/* 비밀번호 찾기 링크 */}
         <div className="forgot-password-link">
