@@ -4,20 +4,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-<<<<<<< HEAD
 import org.springframework.stereotype.Service;      // 일정 DTO(class)
 import org.springframework.transaction.annotation.Transactional;     // 일정 엔티티(class)
 
 import com.hackathon.knut.dto.ScheduleDto; // JPA repository
 import com.hackathon.knut.entity.Schedule;
 import com.hackathon.knut.repository.ScheduleRepository;
-=======
-import com.hackathon.knut.dto.ScheduleDto;
-import com.hackathon.knut.entity.Schedule;
-import com.hackathon.knut.repository.ScheduleRepository;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
->>>>>>> 197365609eafdd67a84ccbfb601ae728ab852044
+
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
@@ -89,7 +82,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         return scheduleRepository.findByUserId(userId);
     }
 
-<<<<<<< HEAD
+
     // 유저별 특정 날짜 일정 목록 조회 (기존 방법)
     @Override
     public List<Schedule> getSchedulesByDate(Long userId, LocalDate date) {
@@ -103,8 +96,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     // 일정 완료 표시 (completed = true)
-=======
->>>>>>> 197365609eafdd67a84ccbfb601ae728ab852044
+
     @Override
     @Transactional
     public void markComplete(Long scheduleId) {

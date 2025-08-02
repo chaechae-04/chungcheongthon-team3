@@ -1,31 +1,23 @@
 package com.hackathon.knut.controller;
 
-<<<<<<< HEAD
 import java.time.LocalDate; // 일정 생성/수정용 DTO 임포트
 import java.time.LocalDateTime; // 일정 엔티티 임포트
 import java.util.List; // 비즈니스 로직 서비스를 임포트
-=======
-import com.hackathon.knut.dto.ScheduleDto; // 일정 생성/수정용 DTO 임포트
-import com.hackathon.knut.entity.Schedule; // 일정 엔티티 임포트
-import com.hackathon.knut.service.ScheduleAiManagerService;
-import com.hackathon.knut.service.ScheduleService; // 비즈니스 로직 서비스를 임포트
-import org.springframework.http.ResponseEntity; // HTTP 응답 객체 사용
-import org.springframework.web.bind.annotation.*;
->>>>>>> 197365609eafdd67a84ccbfb601ae728ab852044
 
-import org.springframework.http.ResponseEntity; // HTTP 응답 객체 사용
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.http.ResponseEntity; // 일정 생성/수정용 DTO 임포트
+import org.springframework.web.bind.annotation.CrossOrigin; // 일정 엔티티 임포트
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable; // 일정 목록 조회용 컬렉션 임포트
+import org.springframework.web.bind.annotation.PatchMapping; // 비즈니스 로직 서비스를 임포트
+import org.springframework.web.bind.annotation.PathVariable; // HTTP 응답 객체 사용
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody; // HTTP 응답 객체 사용
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hackathon.knut.dto.ScheduleDto;
+import com.hackathon.knut.dto.ScheduleDto; // 일정 목록 조회용 컬렉션 임포트
 import com.hackathon.knut.entity.Schedule;
+import com.hackathon.knut.service.ScheduleAiManagerService;
 import com.hackathon.knut.service.ScheduleService;
 
 @RestController // REST API 컨트롤러 선언 (JSON 응답)
