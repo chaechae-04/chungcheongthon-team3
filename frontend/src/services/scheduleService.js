@@ -72,35 +72,36 @@ export const scheduleService = {
   },
 
   // 일정 완료 표시
-  async markComplete(scheduleId) {
+  async markComplete(scheduleId, completed, userId) {
     try {
       const response = await fetch(`${API_BASE_URL}/schedules/${scheduleId}/complete`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-        }
+        },
+        body: JSON.stringify({ completed, userId })
       });
 
       if (!response.ok) {
-        throw new Error('일정 완료 표시에 실패했습니다.');
+        throw new Error('일정 완료 상태 변경에 실패했습니다.');
       }
 
       return await response.json();
     } catch (error) {
-      console.error('일정 완료 표시 오류:', error);
+      console.error('일정 완료 상태 변경 오류:', error);
       throw error;
     }
   },
 
   // 일정 중요도 변경
-  async updatePriority(scheduleId, priority) {
+  async updatePriority(scheduleId, priority, userId) {
     try {
       const response = await fetch(`${API_BASE_URL}/schedules/${scheduleId}/priority`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ priority })
+        body: JSON.stringify({ priority, userId })
       });
 
       if (!response.ok) {
@@ -110,6 +111,28 @@ export const scheduleService = {
       return await response.json();
     } catch (error) {
       console.error('일정 중요도 변경 오류:', error);
+      throw error;
+    }
+  },
+
+  // 일정 삭제
+  async deleteSchedule(scheduleId) {
+    try {
+      const response = await fetch(`${API_BASE_URL}/schedules/${scheduleId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('일정 삭제에 실패했습니다.');
+      }
+
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      console.error('일정 삭제 오류:', error);
       throw error;
     }
   }

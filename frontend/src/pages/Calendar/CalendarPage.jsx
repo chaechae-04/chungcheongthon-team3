@@ -3,6 +3,7 @@ import "./CalendarPage.css"
 import Header from "../../components/layout/Header"
 import Footer from "../../components/layout/Footer"
 import ScheduleItem from "../../components/ScheduleItem.jsx"
+import SchedulePopup from "../../components/SchedulePopup.jsx"
 import { useAuth } from "../../hooks/useAuth"
 import { scheduleService } from "../../services/scheduleService"
 
@@ -11,6 +12,8 @@ function CalendarPage() {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [schedules, setSchedules] = useState([])
   const [loading, setLoading] = useState(false)
+  const [selectedSchedule, setSelectedSchedule] = useState(null)
+  const [showPopup, setShowPopup] = useState(false)
   const { user } = useAuth()
 
   // 현재 표시할 년월 계산
@@ -148,8 +151,90 @@ function CalendarPage() {
 
   // 일정 클릭 핸들러
   const handleScheduleClick = (schedule) => {
-    console.log('일정 편집:', schedule);
-    // TODO: 일정 편집 모달 또는 페이지로 이동
+    setSelectedSchedule(schedule);
+    setShowPopup(true);
+  }
+
+  // 팝업 닫기 핸들러
+  const handleClosePopup = () => {
+    setShowPopup(false);
+    setSelectedSchedule(null);
+  }
+
+  // 일정 완료/미완료 변경 핸들러
+  const handleCompleteSchedule = async (scheduleId, completed) => {
+    try {
+      await scheduleService.markComplete(scheduleId, completed, user.id);
+      
+      // 로컬 상태 업데이트
+      setSchedules(prevSchedules => 
+        prevSchedules.map(schedule => 
+          schedule.id === scheduleId 
+            ? { ...schedule, completed: completed }
+            : schedule
+        )
+      );
+      
+      // 팝업의 일정 정보도 업데이트
+      if (selectedSchedule && selectedSchedule.id === scheduleId) {
+        setSelectedSchedule(prev => ({ ...prev, completed: completed }));
+      }
+      
+      console.log('일정 완료 상태가 변경되었습니다.');
+    } catch (error) {
+      console.error('일정 완료 상태 변경 실패:', error);
+      alert('일정 완료 상태 변경에 실패했습니다.');
+    }
+  }
+
+  // 일정 삭제 핸들러
+  const handleDeleteSchedule = async (scheduleId) => {
+    if (!window.confirm('정말로 이 일정을 삭제하시겠습니까?')) {
+      return;
+    }
+
+    try {
+      await scheduleService.deleteSchedule(scheduleId);
+      
+      // 로컬 상태에서 삭제
+      setSchedules(prevSchedules => 
+        prevSchedules.filter(schedule => schedule.id !== scheduleId)
+      );
+      
+      // 팝업 닫기
+      handleClosePopup();
+      
+      console.log('일정이 삭제되었습니다.');
+    } catch (error) {
+      console.error('일정 삭제 실패:', error);
+      alert('일정 삭제에 실패했습니다.');
+    }
+  }
+
+  // 일정 중요도 변경 핸들러
+  const handleUpdatePriority = async (scheduleId, priority) => {
+    try {
+      await scheduleService.updatePriority(scheduleId, priority, user.id);
+      
+      // 로컬 상태 업데이트
+      setSchedules(prevSchedules => 
+        prevSchedules.map(schedule => 
+          schedule.id === scheduleId 
+            ? { ...schedule, priority: priority }
+            : schedule
+        )
+      );
+      
+      // 팝업의 일정 정보도 업데이트
+      if (selectedSchedule && selectedSchedule.id === scheduleId) {
+        setSelectedSchedule(prev => ({ ...prev, priority: priority }));
+      }
+      
+      console.log('일정 중요도가 변경되었습니다.');
+    } catch (error) {
+      console.error('일정 중요도 변경 실패:', error);
+      alert('일정 중요도 변경에 실패했습니다.');
+    }
   }
 
   return (
@@ -243,6 +328,17 @@ function CalendarPage() {
         </div>
       </main>
       <Footer />
+      
+      {/* 일정 상세 팝업 */}
+      {showPopup && selectedSchedule && (
+        <SchedulePopup
+          schedule={selectedSchedule}
+          onClose={handleClosePopup}
+          onComplete={handleCompleteSchedule}
+          onDelete={handleDeleteSchedule}
+          onUpdatePriority={handleUpdatePriority}
+        />
+      )}
     </div>
   )
 }

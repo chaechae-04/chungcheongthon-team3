@@ -1,11 +1,12 @@
 package com.hackathon.knut.service;
 
-import org.springframework.stereotype.Service;
+// import org.springframework.stereotype.Service;
 
-@Service
+// @Service  // 임시로 주석 처리
 public class PushService {
+
     public void sendPush(Long userId, String title, String message) {
-        // 푸시 알림 보내기 (실험에선 콘솔, 실전은 모바일 푸시 연동)
-        System.out.println("푸시 [" + userId + "] " + title + ": " + message);
+        // TODO: 푸시 알림 로직 구현
+        System.out.println("푸시 알림 전송: " + title + " - " + message);
     }
 }

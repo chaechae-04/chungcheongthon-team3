@@ -2,10 +2,13 @@ package com.hackathon.knut.controller;
 
 import java.time.LocalDate; // 일정 생성/수정용 DTO 임포트
 import java.time.LocalDateTime; // 일정 엔티티 임포트
-import java.util.List; // 비즈니스 로직 서비스를 임포트
+import java.util.HashMap; // 비즈니스 로직 서비스를 임포트
+import java.util.List; // 일정 생성/수정용 DTO 임포트
+import java.util.Map; // 일정 생성/수정용 DTO 임포트
 
 import org.springframework.http.ResponseEntity; // 일정 생성/수정용 DTO 임포트
 import org.springframework.web.bind.annotation.CrossOrigin; // 일정 엔티티 임포트
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping; // 비즈니스 로직 서비스를 임포트
 import org.springframework.web.bind.annotation.PathVariable; // HTTP 응답 객체 사용
@@ -63,16 +66,35 @@ public class ScheduleController {
 
     // 일정 완료 상태로 변경 API
     @PatchMapping("/{scheduleId}/complete") // PATCH /schedules/{scheduleId}/complete
-    public ResponseEntity<?> markScheduleComplete(@PathVariable Long scheduleId) {
-        scheduleService.markComplete(scheduleId); // 서비스에서 완료 처리
-        return ResponseEntity.ok().body("완료 표시됨"); // 완료 메시지 응답
+    public ResponseEntity<Schedule> markScheduleComplete(@PathVariable Long scheduleId, @RequestBody ScheduleDto scheduleDto) {
+        scheduleService.markComplete(scheduleId, scheduleDto.getCompleted()); // 서비스에서 완료 처리
+        // 업데이트된 일정을 조회하여 반환
+        Schedule updatedSchedule = scheduleService.getSchedulesByUserId(scheduleDto.getUserId()).stream()
+                .filter(s -> s.getId().equals(scheduleId))
+                .findFirst()
+                .orElse(null);
+        return ResponseEntity.ok(updatedSchedule);
     }
 
     // 일정의 중요도(priority)만 변경하는 API
     @PatchMapping("/{scheduleId}/priority") // PATCH /schedules/{scheduleId}/priority
-    public ResponseEntity<?> updatePriority(@PathVariable Long scheduleId, @RequestBody ScheduleDto scheduleDto) {
+    public ResponseEntity<Schedule> updatePriority(@PathVariable Long scheduleId, @RequestBody ScheduleDto scheduleDto) {
         scheduleService.updatePriority(scheduleId, scheduleDto.getPriority()); // 서비스 호출로 중요도 변경
-        return ResponseEntity.ok().body("중요도 변경됨"); // 변경 완료 메시지 응답
+        // 업데이트된 일정을 조회하여 반환
+        Schedule updatedSchedule = scheduleService.getSchedulesByUserId(scheduleDto.getUserId()).stream()
+                .filter(s -> s.getId().equals(scheduleId))
+                .findFirst()
+                .orElse(null);
+        return ResponseEntity.ok(updatedSchedule);
+    }
+
+    // 일정 삭제 API
+    @DeleteMapping("/{scheduleId}") // DELETE /schedules/{scheduleId}
+    public ResponseEntity<Map<String, String>> deleteSchedule(@PathVariable Long scheduleId) {
+        scheduleService.deleteSchedule(scheduleId); // 서비스에서 삭제 처리
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "일정이 삭제되었습니다.");
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/api/ai/schedule-report")

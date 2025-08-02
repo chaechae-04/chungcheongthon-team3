@@ -1,13 +1,12 @@
 package com.hackathon.knut.service;
 
+import java.util.List;
+
 import com.hackathon.knut.dto.ScheduleDto;
 import com.hackathon.knut.entity.Schedule;
 import com.hackathon.knut.repository.ScheduleRepository;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-@Service
+// @Service  // 임시로 주석 처리
 public class ScheduleAiManagerService {
 
     private final ScheduleRepository scheduleRepository;

@@ -41,10 +41,11 @@ public interface ScheduleService {
     List<Schedule> getSchedulesByDateRange(Long userId, LocalDateTime startOfDay, LocalDateTime endOfDay);
 
     /**
-     * 특정 일정(scheduleId)을 완료(completed=true) 상태로 변경한다.
-     * @param scheduleId 완료로 표시할 일정의 ID
+     * 특정 일정(scheduleId)의 완료 상태를 변경한다.
+     * @param scheduleId 완료 상태를 변경할 일정의 ID
+     * @param completed 설정할 완료 상태 (true: 완료, false: 미완료)
      */
-    void markComplete(Long scheduleId);
+    void markComplete(Long scheduleId, boolean completed);
 
     /**
      * 특정 일정(scheduleId)의 중요도(priority)를 수정한다.
@@ -52,5 +53,11 @@ public interface ScheduleService {
      * @param priority 새로 설정할 중요도 값
      */
     void updatePriority(Long scheduleId, int priority);
+
+    /**
+     * 특정 일정(scheduleId)을 삭제한다.
+     * @param scheduleId 삭제할 일정의 ID
+     */
+    void deleteSchedule(Long scheduleId);
 
 }
