@@ -1,28 +1,28 @@
 package com.hackathon.knut.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:5173", "http://127.0.0.1:5173"})
+@RequestMapping("/api/test")
 public class TestController {
-    
-    @GetMapping("/")
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @GetMapping("/hello")
     public String hello() {
         return "Hello from Spring Boot!";
     }
 
-    @GetMapping("/api/test")
-    public ResponseEntity<Map<String, String>> test() {
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Welcome to home!");
-        response.put("redirect", "/dashboard");
-        return ResponseEntity.ok(response);
+    @GetMapping("/encode")
+    public String encodePassword(@RequestParam String password) {
+        String encoded = passwordEncoder.encode(password);
+        boolean matches = passwordEncoder.matches(password, encoded);
+        return String.format("Password: %s, Encoded: %s, Matches: %s", password, encoded, matches);
     }
-    
 }

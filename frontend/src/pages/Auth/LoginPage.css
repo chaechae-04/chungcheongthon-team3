@@ -4,6 +4,22 @@
   font-weight: 700;
 }
 
+.error-message {
+  color: #ef4444;
+  font-size: 14px;
+  margin-bottom: 16px;
+  text-align: center;
+  padding: 8px 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.wire-cta:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .forgot-password-link {
   margin-top: 16px;
   text-align: center;
