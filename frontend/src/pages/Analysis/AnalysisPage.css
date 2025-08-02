@@ -1,0 +1,274 @@
+/* Analysis Page Styles */
+.analysis-page {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+.analysis-main {
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.analysis-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 헤더 섹션 */
+.analysis-header {
+  text-align: center;
+  margin-bottom: 48px;
+  padding: 40px 0;
+}
+
+.analysis-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.analysis-header p {
+  font-size: 1.1rem;
+  color: #b8c5d6;
+  margin: 0;
+}
+
+/* 통계 그리드 */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.stats-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stats-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.stats-card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.stats-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: #b8c5d6;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.stat-value.total {
+  color: #4facfe;
+  background: rgba(79, 172, 254, 0.1);
+}
+
+.stat-value.completed {
+  color: #00d4aa;
+  background: rgba(0, 212, 170, 0.1);
+}
+
+.stat-value.incomplete {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+}
+
+.stat-value.read {
+  color: #00d4aa;
+  background: rgba(0, 212, 170, 0.1);
+}
+
+.stat-value.unread {
+  color: #ffa726;
+  background: rgba(255, 167, 38, 0.1);
+}
+
+/* 로딩 메시지 */
+.loading-message {
+  text-align: center;
+  padding: 20px;
+  color: #b8c5d6;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* AI 인사이트 섹션 */
+.ai-insights-section {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.insights-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.ai-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.insights-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+.insights-header p {
+  font-size: 1rem;
+  color: #b8c5d6;
+  margin: 0;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.insight-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.insight-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.insight-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.insight-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #e8eaed;
+  margin: 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .analysis-container {
+    padding: 0 16px;
+  }
+  
+  .analysis-header h1 {
+    font-size: 2rem;
+  }
+  
+  .analysis-header p {
+    font-size: 1rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .stats-card {
+    padding: 24px;
+  }
+  
+  .ai-insights-section {
+    padding: 24px;
+  }
+  
+  .insights-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .insight-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .analysis-header {
+    padding: 24px 0;
+    margin-bottom: 32px;
+  }
+  
+  .analysis-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .stats-card {
+    padding: 20px;
+  }
+  
+  .stat-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .ai-insights-section {
+    padding: 20px;
+  }
+  
+  .insight-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+} 

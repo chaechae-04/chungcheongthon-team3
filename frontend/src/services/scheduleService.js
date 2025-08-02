@@ -25,6 +25,54 @@ export const scheduleService = {
     }
   },
 
+  // 날짜 범위로 일정 조회
+  async getSchedulesByDateRange(userId, startDate, endDate) {
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/schedules/range?userId=${userId}&startDate=${startDate}&endDate=${endDate}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('일정 조회에 실패했습니다.');
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('일정 조회 오류:', error);
+      throw error;
+    }
+  },
+
+  // AI 분석 수행
+  async getScheduleAnalysis(userId) {
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/schedules/analysis?userId=${userId}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('AI 분석에 실패했습니다.');
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('AI 분석 오류:', error);
+      throw error;
+    }
+  },
+
   // 전체 일정 조회
   async getSchedules(userId) {
     try {

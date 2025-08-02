@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hackathon.knut.dto.ScheduleDto; // 일정 목록 조회용 컬렉션 임포트
 import com.hackathon.knut.entity.Schedule;
+import com.hackathon.knut.service.GeminiAiService;
 import com.hackathon.knut.service.ScheduleAiManagerService;
 import com.hackathon.knut.service.ScheduleService;
 
@@ -29,10 +30,12 @@ import com.hackathon.knut.service.ScheduleService;
 public class ScheduleController {
 
     private final ScheduleService scheduleService; // 서비스(비즈니스 로직) 의존성 주입
+    private final GeminiAiService geminiAiService; // Gemini AI 서비스 의존성 주입
     ScheduleAiManagerService scheduleAiManagerService;
 
-    public ScheduleController(ScheduleService scheduleService) {
+    public ScheduleController(ScheduleService scheduleService, GeminiAiService geminiAiService) {
         this.scheduleService = scheduleService; // 생성자에서 서비스 주입
+        this.geminiAiService = geminiAiService; // 생성자에서 Gemini AI 서비스 주입
     }
 
     // 일정 추가 API
@@ -62,6 +65,41 @@ public class ScheduleController {
         
         List<Schedule> schedules = scheduleService.getSchedulesByDateRange(userId, startOfDay, endOfDay);
         return ResponseEntity.ok(schedules);
+    }
+
+    // 날짜 범위로 일정 조회 API
+    @GetMapping("/range") // GET /schedules/range?userId={id}&startDate={startDate}&endDate={endDate}
+    public ResponseEntity<List<Schedule>> getSchedulesByDateRange(
+            @RequestParam Long userId,
+            @RequestParam String startDate,
+            @RequestParam String endDate) {
+        LocalDate startLocalDate = LocalDate.parse(startDate);
+        LocalDate endLocalDate = LocalDate.parse(endDate);
+        
+        // 시작 날짜의 시작 시간과 종료 날짜의 끝 시간 계산
+        LocalDateTime startOfRange = startLocalDate.atStartOfDay();
+        LocalDateTime endOfRange = endLocalDate.plusDays(1).atStartOfDay();
+        
+        List<Schedule> schedules = scheduleService.getSchedulesByDateRange(userId, startOfRange, endOfRange);
+        return ResponseEntity.ok(schedules);
+    }
+
+    // AI 분석 API
+    @GetMapping("/analysis") // GET /schedules/analysis?userId={id}
+    public ResponseEntity<Map<String, Object>> getScheduleAnalysis(@RequestParam Long userId) {
+        try {
+            // 사용자의 모든 일정 조회
+            List<Schedule> schedules = scheduleService.getSchedulesByUserId(userId);
+            
+            // AI 분석 수행
+            Map<String, Object> analysisResult = geminiAiService.analyzeScheduleData(schedules);
+            
+            return ResponseEntity.ok(analysisResult);
+        } catch (Exception e) {
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("error", "AI 분석 중 오류가 발생했습니다: " + e.getMessage());
+            return ResponseEntity.internalServerError().body(errorResponse);
+        }
     }
 
     // 일정 완료 상태로 변경 API
