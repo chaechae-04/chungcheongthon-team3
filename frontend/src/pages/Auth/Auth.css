@@ -112,6 +112,32 @@
   background: var(--primary-dark, #1746a2);
 }
 
+.wire-cta:disabled {
+  background: var(--border, #e5e8eb);
+  color: var(--text-secondary, #888);
+  cursor: not-allowed;
+}
+
+/* 에러 메시지 스타일 */
+.error-message {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .error-message {
+    background: #3a2323;
+    color: #f87171;
+    border-color: #f87171;
+  }
+}
+
 /* Google 로그인 버튼 스타일 */
 .google-login-btn {
   background: var(--bg-card, #fff);

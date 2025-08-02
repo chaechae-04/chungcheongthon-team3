@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../../hooks/useAuth.js"
+import { authService } from "../../services/authService.js"
 import "./Auth.css"
 import "./LoginPage.css"
 
@@ -36,44 +37,28 @@ function LoginPage() {
     }
 
     try {
-      const response = await fetch("http://localhost:8080/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password
-        })
+      const data = await authService.login(formData.email, formData.password)
+      
+      // 로그인 성공 시 AuthContext에 사용자 정보 저장
+      login({
+        id: data.id,
+        username: data.username,
+        email: data.email,
+        nickname: data.nickname,
+        profileImage: data.profileImage,
+        authProvider: data.authProvider,
+        token: data.token
       })
 
-      if (response.ok) {
-        const data = await response.json()
-        
-        // 로그인 성공 시 AuthContext에 사용자 정보 저장
-        login({
-          id: data.id,
-          username: data.username,
-          email: data.email,
-          nickname: data.nickname,
-          profileImage: data.profileImage,
-          authProvider: data.authProvider,
-          token: data.token
-        })
-
-        // 메인페이지로 리다이렉트
-        navigate("/")
-      } else {
-        try {
-          const errorData = await response.json()
-          setError(errorData.message || `로그인에 실패했습니다. (${response.status})`)
-        } catch {
-          setError(`로그인에 실패했습니다. (${response.status})`)
-        }
-      }
+      // 메인페이지로 리다이렉트
+      navigate("/")
     } catch (err) {
-      setError("서버 연결에 실패했습니다.")
       console.error("Login error:", err)
+      if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
+        setError("서버에 연결할 수 없습니다. 백엔드 서버가 실행 중인지 확인해주세요.")
+      } else {
+        setError(err.message || "로그인에 실패했습니다.")
+      }
     } finally {
       setIsLoading(false)
     }

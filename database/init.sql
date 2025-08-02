@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS hackathon_db;
+CREATE DATABASE IF NOT EXISTS hackathon_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE hackathon_db;
 
 CREATE TABLE IF NOT EXISTS users (
@@ -11,7 +11,19 @@ CREATE TABLE IF NOT EXISTS users (
     google_id VARCHAR(100),
     profile_image VARCHAR(500),
     auth_provider VARCHAR(20) DEFAULT 'LOCAL'
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS schedules (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    title VARCHAR(200) NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    start_time DATETIME NOT NULL,
+    end_time DATETIME NOT NULL,
+    priority INT NOT NULL DEFAULT 2,
+    completed BOOLEAN NOT NULL DEFAULT FALSE,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- 테스트용 사용자 데이터 (비밀번호: 123456)
 INSERT INTO users (username, email, pw, nickname, auth_provider) VALUES 

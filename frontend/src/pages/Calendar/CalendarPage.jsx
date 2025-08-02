@@ -1,12 +1,17 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import "./CalendarPage.css"
 import Header from "../../components/layout/Header"
 import Footer from "../../components/layout/Footer"
 import ScheduleItem from "../../components/ScheduleItem.jsx"
+import { useAuth } from "../../hooks/useAuth"
+import { scheduleService } from "../../services/scheduleService"
 
 function CalendarPage() {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState(new Date())
+  const [schedules, setSchedules] = useState([])
+  const [loading, setLoading] = useState(false)
+  const { user } = useAuth()
 
   // 현재 표시할 년월 계산
   const currentYear = currentDate.getFullYear()
@@ -68,9 +73,37 @@ function CalendarPage() {
     weeks.push(calendarDays.slice(i, i + 7))
   }
 
+  // 선택된 날짜의 일정 조회 (하루를 빼서 계산)
+  const fetchSchedulesForDate = async (date) => {
+    if (!user || !user.id) {
+      console.log('사용자 정보가 없습니다.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      // 하루를 빼서 계산
+      const adjustedDate = new Date(date);
+      adjustedDate.setDate(date.getDate() + 1);
+      const dateString = adjustedDate.toISOString().split('T')[0]; // YYYY-MM-DD 형식
+      
+      console.log('원본 날짜:', date.toISOString().split('T')[0]);
+      console.log('조정된 날짜:', dateString);
+      
+      const schedulesData = await scheduleService.getSchedulesByDate(user.id, dateString);
+      setSchedules(schedulesData);
+    } catch (error) {
+      console.error('일정 조회 실패:', error);
+      setSchedules([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // 날짜 선택 핸들러
   const handleDateClick = (dayData) => {
-    setSelectedDate(dayData.date)
+    setSelectedDate(dayData.date);
+    fetchSchedulesForDate(dayData.date);
   }
 
   // 월 이동 핸들러
@@ -105,6 +138,19 @@ function CalendarPage() {
 
   // 한국어 요일 이름
   const dayNames = ['일', '월', '화', '수', '목', '금', '토']
+
+  // 컴포넌트 마운트 시 오늘 날짜의 일정 조회
+  useEffect(() => {
+    if (user && user.id) {
+      fetchSchedulesForDate(selectedDate);
+    }
+  }, [user]);
+
+  // 일정 클릭 핸들러
+  const handleScheduleClick = (schedule) => {
+    console.log('일정 편집:', schedule);
+    // TODO: 일정 편집 모달 또는 페이지로 이동
+  }
 
   return (
     <div className="page-container calendar-page">
@@ -174,24 +220,24 @@ function CalendarPage() {
             </div>
             
             <div className="schedule-list">
-              <ScheduleItem
-                title="프로젝트 발표"
-                time="오후 2:00 - 3:00"
-                priority="high"
-                onClick={() => console.log('Edit: 프로젝트 발표')}
-              />
-              <ScheduleItem
-                title="팀 미팅"
-                time="오후 4:00 - 5:00"
-                priority="medium"
-                onClick={() => console.log('Edit: 팀 미팅')}
-              />
-              <ScheduleItem
-                title="점심 약속"
-                time="오후 12:00 - 1:00"
-                priority="low"
-                onClick={() => console.log('Edit: 점심 약속')}
-              />
+              {loading ? (
+                <div className="loading">일정을 불러오는 중...</div>
+              ) : schedules.length > 0 ? (
+                schedules.map((schedule) => (
+                  <ScheduleItem
+                    key={schedule.id}
+                    title={schedule.title}
+                    startTime={schedule.startTime}
+                    endTime={schedule.endTime}
+                    priority={schedule.priority}
+                    completed={schedule.completed}
+                    type={schedule.type}
+                    onClick={() => handleScheduleClick(schedule)}
+                  />
+                ))
+              ) : (
+                <div className="no-schedules">해당 날짜에 일정이 없습니다.</div>
+              )}
             </div>
           </div>
         </div>

@@ -1,11 +1,15 @@
 package com.hackathon.knut.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
-import com.hackathon.knut.dto.ScheduleDto;      // 일정 DTO(class)
-import com.hackathon.knut.entity.Schedule;     // 일정 엔티티(class)
-import com.hackathon.knut.repository.ScheduleRepository; // JPA repository
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import org.springframework.stereotype.Service;      // 일정 DTO(class)
+import org.springframework.transaction.annotation.Transactional;     // 일정 엔티티(class)
+
+import com.hackathon.knut.dto.ScheduleDto; // JPA repository
+import com.hackathon.knut.entity.Schedule;
+import com.hackathon.knut.repository.ScheduleRepository;
 
 @Service // 빈 등록: ScheduleServiceImpl를 서비스 레이어로 사용
 public class ScheduleServiceImpl implements ScheduleService {
@@ -38,6 +42,18 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public List<Schedule> getSchedulesByUserId(Long userId) {
         return scheduleRepository.findByUserId(userId);
+    }
+
+    // 유저별 특정 날짜 일정 목록 조회 (기존 방법)
+    @Override
+    public List<Schedule> getSchedulesByDate(Long userId, LocalDate date) {
+        return scheduleRepository.findByUserIdAndDate(userId, date);
+    }
+
+    // 유저별 특정 날짜 범위 일정 목록 조회 (시간대 문제 해결)
+    @Override
+    public List<Schedule> getSchedulesByDateRange(Long userId, LocalDateTime startOfDay, LocalDateTime endOfDay) {
+        return scheduleRepository.findByUserIdAndDateRange(userId, startOfDay, endOfDay);
     }
 
     // 일정 완료 표시 (completed = true)

@@ -99,21 +99,26 @@
   text-align: center;
   font-size: 14px;
   font-weight: 500;
+  color: var(--text-main);
   cursor: pointer;
   transition: all 0.2s;
+  border-radius: 4px;
+  margin: 1px;
 }
 
 .day.current-month {
-  color: var(--text-main);
+  background: var(--bg-card);
 }
 
 .day.current-month:hover {
-  background: var(--bg-main);
+  background: var(--primary-light);
+  color: var(--primary);
 }
 
 .day.prev-month,
 .day.next-month {
-  color: #999;
+  color: var(--text-secondary);
+  background: var(--bg-main);
 }
 
 .day.selected {
@@ -123,7 +128,7 @@
 }
 
 .day.today {
-  background: #ff6b6b;
+  background: var(--accent);
   color: white;
   font-weight: 600;
 }
@@ -131,7 +136,6 @@
 .day.today.selected {
   background: var(--primary);
   color: white;
-  font-weight: 600;
 }
 
 .weekly-calendar {
@@ -145,36 +149,36 @@
   font-size: 16px;
   font-weight: 600;
   color: var(--text-main);
-  margin-bottom: 15px;
+  margin: 0 0 15px 0;
 }
 
 .weekly-schedule {
-  background: var(--bg-main);
-  border-radius: 8px;
-  padding: 15px;
   display: flex;
-  justify-content: space-around;
+  gap: 8px;
+  justify-content: space-between;
 }
 
 .week-day {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-main);
-  text-align: center;
   flex: 1;
+  padding: 12px 8px;
+  text-align: center;
+  background: var(--bg-main);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 .week-day.selected {
-  color: var(--primary);
-  font-weight: 600;
+  background: var(--primary);
+  color: white;
 }
 
 .schedule-view {
+  flex: 1;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 30px;
-  width: 451px;
+  padding: 20px;
 }
 
 .schedule-header {
@@ -195,10 +199,10 @@
   background: var(--primary);
   color: white;
   border: none;
-  border-radius: 8px;
-  padding: 6px 12px;
+  padding: 8px 16px;
+  border-radius: 6px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   transition: background 0.2s;
 }
@@ -208,28 +212,42 @@
 }
 
 .schedule-list {
-  margin-top: 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-/* Schedule styles are now handled by ScheduleItem component */
+.loading {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.no-schedules {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  background: var(--bg-main);
+  border-radius: 8px;
+  border: 1px dashed var(--border);
+}
 
 @media (max-width: 900px) {
   .calendar-container {
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
   }
   
   .schedule-view {
-    width: 100%;
+    order: -1;
   }
 }
 
 @media (max-width: 600px) {
   .calendar-main {
-    padding: 16px;
+    padding: 10px;
   }
   
   .monthly-calendar,

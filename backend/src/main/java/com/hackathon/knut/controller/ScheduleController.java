@@ -1,12 +1,23 @@
 package com.hackathon.knut.controller;
 
-import com.hackathon.knut.dto.ScheduleDto; // 일정 생성/수정용 DTO 임포트
-import com.hackathon.knut.entity.Schedule; // 일정 엔티티 임포트
-import com.hackathon.knut.service.ScheduleService; // 비즈니스 로직 서비스를 임포트
-import org.springframework.http.ResponseEntity; // HTTP 응답 객체 사용
-import org.springframework.web.bind.annotation.*;
+import java.time.LocalDate; // 일정 생성/수정용 DTO 임포트
+import java.time.LocalDateTime; // 일정 엔티티 임포트
+import java.util.List; // 비즈니스 로직 서비스를 임포트
 
-import java.util.List; // 일정 목록 조회용 컬렉션 임포트
+import org.springframework.http.ResponseEntity; // HTTP 응답 객체 사용
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable; // 일정 목록 조회용 컬렉션 임포트
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.hackathon.knut.dto.ScheduleDto;
+import com.hackathon.knut.entity.Schedule;
+import com.hackathon.knut.service.ScheduleService;
 
 @RestController // REST API 컨트롤러 선언 (JSON 응답)
 @RequestMapping("api/schedules") // 모든 엔드포인트가 /schedules로 시작
@@ -31,6 +42,21 @@ public class ScheduleController {
     public ResponseEntity<List<Schedule>> getSchedules(@RequestParam Long userId) {
         List<Schedule> schedules = scheduleService.getSchedulesByUserId(userId); // 서비스 호출해서 유저별 일정목록 반환
         return ResponseEntity.ok(schedules); // 일정 목록을 리스트로 응답
+    }
+
+    // 특정 날짜의 일정 조회 API (시간대 문제 해결)
+    @GetMapping("/date") // GET /schedules/date?userId={id}&date={date}
+    public ResponseEntity<List<Schedule>> getSchedulesByDate(
+            @RequestParam Long userId,
+            @RequestParam String date) {
+        LocalDate localDate = LocalDate.parse(date);
+        
+        // 해당 날짜의 시작과 끝 시간 계산 (한국 시간대 기준)
+        LocalDateTime startOfDay = localDate.atStartOfDay();
+        LocalDateTime endOfDay = localDate.plusDays(1).atStartOfDay();
+        
+        List<Schedule> schedules = scheduleService.getSchedulesByDateRange(userId, startOfDay, endOfDay);
+        return ResponseEntity.ok(schedules);
     }
 
     // 일정 완료 상태로 변경 API

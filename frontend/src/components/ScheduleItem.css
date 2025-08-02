@@ -10,6 +10,7 @@
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   border-left: 6px solid var(--border);
   gap: 12px;
+  position: relative;
 }
 
 .schedule-item.high {
@@ -27,6 +28,16 @@
   background: #ecfdf5;
 }
 
+.schedule-item.completed {
+  opacity: 0.6;
+  background: var(--bg-main);
+}
+
+.schedule-item.completed .schedule-title-btn {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
 @media (prefers-color-scheme: dark) {
   .schedule-item.high { 
     background: var(--high-bg-dark); 
@@ -36,6 +47,9 @@
   }
   .schedule-item.low { 
     background: var(--low-bg-dark); 
+  }
+  .schedule-item.completed {
+    background: var(--bg-main);
   }
 }
 
@@ -51,6 +65,7 @@
   transition: all 0.2s ease;
   text-align: left;
   font-size: 1rem;
+  flex: 1;
 }
 
 .schedule-title-btn:hover {
@@ -66,6 +81,17 @@
   font-size: 0.9rem;
   color: var(--text-sub);
   margin-right: 12px;
+  white-space: nowrap;
+}
+
+.schedule-type {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: var(--bg-main);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 8px;
+  white-space: nowrap;
 }
 
 .badge {
@@ -75,6 +101,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   color: #fff;
+  white-space: nowrap;
 }
 
 .badge.high {
@@ -89,8 +116,25 @@
   background: var(--low);
 }
 
+.completed-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--success);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
 @media (prefers-color-scheme: dark) {
   .schedule-title-btn:hover {
     background: rgba(37, 99, 235, 0.2);
+  }
+  
+  .schedule-type {
+    background: var(--bg-card);
+    color: var(--text-secondary);
   }
 } 

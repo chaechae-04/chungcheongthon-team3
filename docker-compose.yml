@@ -27,7 +27,7 @@ services:
       - ./backend:/app
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/hackathon_db
+      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/hackathon_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
       - SPRING_DATASOURCE_USERNAME=hackathon_user
       - SPRING_DATASOURCE_PASSWORD=eZAKJdqjgspa+xYL/17RurqXQYxgSFG7tetu4FRGorw=
     depends_on:
@@ -45,9 +45,14 @@ services:
       - MYSQL_DATABASE=hackathon_db
       - MYSQL_USER=hackathon_user
       - MYSQL_PASSWORD=eZAKJdqjgspa+xYL/17RurqXQYxgSFG7tetu4FRGorw=
+      - MYSQL_CHARACTER_SET_SERVER=utf8mb4
+      - MYSQL_COLLATION_SERVER=utf8mb4_unicode_ci
+      - TZ=Asia/Seoul
     volumes:
       - mysql_data:/var/lib/mysql
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./database/my.cnf:/etc/mysql/conf.d/my.cnf
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-time-zone=+09:00
     networks:
       - app-network
 
