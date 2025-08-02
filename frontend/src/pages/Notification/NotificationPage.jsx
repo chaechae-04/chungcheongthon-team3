@@ -158,7 +158,7 @@ function NotificationPage() {
                         <label className="toggle-label">
                           <input
                             type="checkbox"
-                            checked={schedule.notificationEnabled}
+                            checked={schedule.priority === 3 ? true : false}
                             onChange={() => toggleNotification(schedule.id, schedule.notificationEnabled)}
                             disabled={updating[schedule.id]}
                             className="toggle-input"

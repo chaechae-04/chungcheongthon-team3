@@ -89,7 +89,7 @@ function CalendarPage() {
     try {
       // 하루를 빼서 계산
       const adjustedDate = new Date(date);
-      adjustedDate.setDate(date.getDate() + 1);
+      adjustedDate.setDate(date.getDate());
       const dateString = adjustedDate.toISOString().split('T')[0]; // YYYY-MM-DD 형식
       
       console.log('원본 날짜:', date.toISOString().split('T')[0]);
@@ -107,8 +107,14 @@ function CalendarPage() {
 
   // 날짜 선택 핸들러
   const handleDateClick = (dayData) => {
+    // 클릭할 때만 날짜에 +1 추가 (일정 조회용)
+    const adjustedDate = new Date(dayData.date);
+    adjustedDate.setDate(dayData.date.getDate() + 1);
+    
+    // 시각적 표시는 원래 클릭한 날짜로
     setSelectedDate(dayData.date);
-    fetchSchedulesForDate(dayData.date);
+    // 일정 조회는 +1된 날짜로
+    fetchSchedulesForDate(adjustedDate);
   }
 
   // 월 이동 핸들러
