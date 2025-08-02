@@ -4,6 +4,7 @@ import Header from "../../components/layout/Header"
 import Footer from "../../components/layout/Footer"
 import ScheduleItem from "../../components/ScheduleItem.jsx"
 import SchedulePopup from "../../components/SchedulePopup.jsx"
+import AddSchedulePopup from "../../components/AddSchedulePopup.jsx"
 import { useAuth } from "../../hooks/useAuth"
 import { scheduleService } from "../../services/scheduleService"
 
@@ -14,6 +15,7 @@ function CalendarPage() {
   const [loading, setLoading] = useState(false)
   const [selectedSchedule, setSelectedSchedule] = useState(null)
   const [showPopup, setShowPopup] = useState(false)
+  const [showAddPopup, setShowAddPopup] = useState(false)
   const { user } = useAuth()
 
   // 현재 표시할 년월 계산
@@ -181,6 +183,10 @@ function CalendarPage() {
       }
       
       console.log('일정 완료 상태가 변경되었습니다.');
+      alert(completed ? '일정이 완료되었습니다.' : '일정이 미완료로 변경되었습니다.');
+      
+      // 팝업 닫기
+      handleClosePopup();
     } catch (error) {
       console.error('일정 완료 상태 변경 실패:', error);
       alert('일정 완료 상태 변경에 실패했습니다.');
@@ -205,6 +211,7 @@ function CalendarPage() {
       handleClosePopup();
       
       console.log('일정이 삭제되었습니다.');
+      alert('일정이 삭제되었습니다.');
     } catch (error) {
       console.error('일정 삭제 실패:', error);
       alert('일정 삭제에 실패했습니다.');
@@ -231,10 +238,51 @@ function CalendarPage() {
       }
       
       console.log('일정 중요도가 변경되었습니다.');
+      
+      // 우선순위 텍스트 가져오기
+      const priorityText = priority === 1 ? '낮음' : priority === 2 ? '보통' : '높음';
+      alert(`일정 우선순위가 '${priorityText}'으로 변경되었습니다.`);
+      
+      // 팝업 닫기
+      handleClosePopup();
     } catch (error) {
       console.error('일정 중요도 변경 실패:', error);
       alert('일정 중요도 변경에 실패했습니다.');
     }
+  }
+
+  // 일정 추가 핸들러
+  const handleAddSchedule = async (scheduleData) => {
+    try {
+      const newSchedule = await scheduleService.addSchedule(scheduleData);
+      
+      // 로컬 상태에 새 일정 추가
+      setSchedules(prevSchedules => [...prevSchedules, newSchedule]);
+      
+      console.log('일정이 추가되었습니다.');
+      
+      // 새 일정의 날짜로 캘린더 포커싱 이동
+      const scheduleDate = new Date(newSchedule.startTime);
+      setSelectedDate(scheduleDate);
+      setCurrentDate(new Date(scheduleDate.getFullYear(), scheduleDate.getMonth(), 1));
+      
+      // 해당 날짜의 일정을 다시 조회
+      await fetchSchedulesForDate(scheduleDate);
+      
+    } catch (error) {
+      console.error('일정 추가 실패:', error);
+      throw error;
+    }
+  }
+
+  // 일정 추가 버튼 클릭 핸들러
+  const handleAddButtonClick = () => {
+    setShowAddPopup(true);
+  }
+
+  // 일정 추가 팝업 닫기 핸들러
+  const handleCloseAddPopup = () => {
+    setShowAddPopup(false);
   }
 
   return (
@@ -301,7 +349,7 @@ function CalendarPage() {
           <div className="schedule-view">
             <div className="schedule-header">
               <h2>{selectedDate.getMonth() + 1}월 {selectedDate.getDate()}일 ({dayNames[selectedDate.getDay()]}요일) 일정</h2>
-              <button className="add-schedule-btn">+ 일정 추가</button>
+              <button className="add-schedule-btn" onClick={handleAddButtonClick}>+ 일정 추가</button>
             </div>
             
             <div className="schedule-list">
@@ -337,6 +385,16 @@ function CalendarPage() {
           onComplete={handleCompleteSchedule}
           onDelete={handleDeleteSchedule}
           onUpdatePriority={handleUpdatePriority}
+        />
+      )}
+      
+      {/* 일정 추가 팝업 */}
+      {showAddPopup && (
+        <AddSchedulePopup
+          onClose={handleCloseAddPopup}
+          onAdd={handleAddSchedule}
+          userId={user.id}
+          selectedDate={selectedDate}
         />
       )}
     </div>
