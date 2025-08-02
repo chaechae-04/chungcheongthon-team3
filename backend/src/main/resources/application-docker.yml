@@ -19,3 +19,5 @@ server:
 logging:
   level:
     com.hackathon.knut: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG

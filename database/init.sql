@@ -15,6 +15,6 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- 테스트용 사용자 데이터 (비밀번호: 123456)
 INSERT INTO users (username, email, pw, nickname, auth_provider) VALUES 
-('admin', 'admin@example.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '관리자', 'LOCAL'),
-('testuser', 'test@example.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '테스트유저', 'LOCAL'),
-('user1', 'user1@example.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '사용자1', 'LOCAL');
+('admin', 'admin@example.com', '$2a$10$4D3Du1repNEboOb6zDhoWOZGGzEfaqyo7j06ZmbFjF/RS.s62LRiC', 'admin', 'LOCAL'),
+('testuser', 'test@example.com', '$2a$10$4D3Du1repNEboOb6zDhoWOZGGzEfaqyo7j06ZmbFjF/RS.s62LRiC', 'testUser', 'LOCAL'),
+('user1', 'user1@example.com', '$2a$10$4D3Du1repNEboOb6zDhoWOZGGzEfaqyo7j06ZmbFjF/RS.s62LRiC', 'user1', 'LOCAL');
