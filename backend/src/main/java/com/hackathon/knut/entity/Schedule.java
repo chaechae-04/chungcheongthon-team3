@@ -35,4 +35,10 @@ public class Schedule {
 
     @Column(nullable = false)
     private boolean completed = false; // 완료 여부
+
+    @Column(length = 1000) // 칼럼 추가! AI 추천 전략/메모 저장
+    private String aiStrategy;
+
+    // Setter는 롬복 @Setter로 커버, 필요하면 아래처럼 구현할 수도 있음
+    // public void setAiStrategy(String aiStrategy) { this.aiStrategy = aiStrategy; }
 }

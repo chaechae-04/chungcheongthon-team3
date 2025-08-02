@@ -4,46 +4,92 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+<<<<<<< HEAD
 import org.springframework.stereotype.Service;      // 일정 DTO(class)
 import org.springframework.transaction.annotation.Transactional;     // 일정 엔티티(class)
 
 import com.hackathon.knut.dto.ScheduleDto; // JPA repository
 import com.hackathon.knut.entity.Schedule;
 import com.hackathon.knut.repository.ScheduleRepository;
+=======
+import com.hackathon.knut.dto.ScheduleDto;
+import com.hackathon.knut.entity.Schedule;
+import com.hackathon.knut.repository.ScheduleRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+>>>>>>> 197365609eafdd67a84ccbfb601ae728ab852044
 
-@Service // 빈 등록: ScheduleServiceImpl를 서비스 레이어로 사용
+@Service
 public class ScheduleServiceImpl implements ScheduleService {
 
-    // 의존성 필드 선언 및 생성자 주입
-    private final ScheduleRepository scheduleRepository;   // 일정 CRUD와 사용자별 조회
+    private final ScheduleRepository scheduleRepository;
+    private final AiService aiService;
+    private final NotificationService notificationService;
+    private final PushService pushService;
+    private final MailService mailService;
 
-    // 생성자에서 의존성(빈) 모두 받아옴 (스프링 DI)
-    public ScheduleServiceImpl(ScheduleRepository scheduleRepository) {
-        this.scheduleRepository = scheduleRepository; // 주입받은 레포지토리 할당
+    public ScheduleServiceImpl(
+            ScheduleRepository scheduleRepository,
+            AiService aiService,
+            NotificationService notificationService,
+            PushService pushService,
+            MailService mailService
+    ) {
+        this.scheduleRepository = scheduleRepository;
+        this.aiService = aiService;
+        this.notificationService = notificationService;
+        this.pushService = pushService;
+        this.mailService = mailService;
     }
 
-    // 일정 추가 및 AI + 알림 분기
     @Override
     public Schedule addSchedule(ScheduleDto dto) {
-        Schedule schedule = new Schedule(); // 빈 엔티티 생성
-        schedule.setUserId(dto.getUserId());           // 사용자ID 세팅
-        schedule.setTitle(dto.getTitle());             // 제목 세팅
-        schedule.setType(dto.getType());               // 종류/분류 세팅
-        schedule.setStartTime(dto.getStartTime());     // 시작시간
-        schedule.setEndTime(dto.getEndTime());         // 종료시간
-        schedule.setPriority(dto.getPriority());       // 중요도
-        schedule.setCompleted(false);                  // 초기 완료상태 false
+        Schedule schedule = new Schedule();
+        schedule.setUserId(dto.getUserId());
+        schedule.setTitle(dto.getTitle());
+        schedule.setType(dto.getType());
+        schedule.setStartTime(dto.getStartTime());
+        schedule.setEndTime(dto.getEndTime());
+        schedule.setPriority(dto.getPriority());
+        schedule.setCompleted(false);
 
-        // (3) 일정 DB 저장(영속화)
+        // (1) OpenAI 분석
+        String aiResult = aiService.analyzeByPriority(
+                dto.getTitle(), dto.getPriority(), dto.getStartTime().toString()
+        );
+
+        // (2) AI 응답에 따라 분기 처리
+        switch (aiResult.trim()) {
+            case "필요없음":
+                break;
+            case "가벼운 알림":
+                notificationService.saveNotification(schedule, "가벼운 알림 내용");
+                break;
+            case "일반 알림":
+                notificationService.saveNotification(schedule, "일반 알림 내용");
+                pushService.sendPush(schedule.getUserId(), "일정 알림", "일반 일정입니다!");
+                break;
+            case "중요 알림":
+            case "긴급 알림":
+                notificationService.saveNotification(schedule, aiResult.trim());
+                pushService.sendPush(schedule.getUserId(), "⚠️중요 일정", "긴급! 중요한 일정입니다.");
+                mailService.sendMail(schedule.getUserId(), "중요/긴급 알림 메일", "일정이 곧 있습니다!");
+                break;
+            default:
+                // AI 응답이 예외적인 경우
+                break;
+        }
+
+        // (3) 저장
         return scheduleRepository.save(schedule);
     }
 
-    // 유저별 전체 일정 목록 조회
     @Override
     public List<Schedule> getSchedulesByUserId(Long userId) {
         return scheduleRepository.findByUserId(userId);
     }
 
+<<<<<<< HEAD
     // 유저별 특정 날짜 일정 목록 조회 (기존 방법)
     @Override
     public List<Schedule> getSchedulesByDate(Long userId, LocalDate date) {
@@ -57,6 +103,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     // 일정 완료 표시 (completed = true)
+=======
+>>>>>>> 197365609eafdd67a84ccbfb601ae728ab852044
     @Override
     @Transactional
     public void markComplete(Long scheduleId) {
@@ -65,7 +113,6 @@ public class ScheduleServiceImpl implements ScheduleService {
         schedule.setCompleted(true);
     }
 
-    // 일정 중요도(우선순위) 변경
     @Override
     @Transactional
     public void updatePriority(Long scheduleId, int priority) {

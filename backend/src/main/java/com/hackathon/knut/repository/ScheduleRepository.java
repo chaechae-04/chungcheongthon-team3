@@ -12,6 +12,7 @@ import com.hackathon.knut.entity.Schedule;
 public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     // 특정 유저의 일정 전체 조회
     List<Schedule> findByUserId(Long userId);
+<<<<<<< HEAD
     
     // 특정 유저의 특정 날짜 일정 조회 (시간대 문제 해결)
     @Query("SELECT s FROM Schedule s WHERE s.userId = :userId AND DATE(s.startTime) = :date ORDER BY s.startTime")
@@ -21,3 +22,6 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     @Query("SELECT s FROM Schedule s WHERE s.userId = :userId AND s.startTime >= :startOfDay AND s.startTime < :endOfDay ORDER BY s.startTime")
     List<Schedule> findByUserIdAndDateRange(@Param("userId") Long userId, @Param("startOfDay") java.time.LocalDateTime startOfDay, @Param("endOfDay") java.time.LocalDateTime endOfDay);
 }
+=======
+}
+>>>>>>> 197365609eafdd67a84ccbfb601ae728ab852044
